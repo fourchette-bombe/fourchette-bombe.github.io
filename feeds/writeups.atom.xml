@@ -9,7 +9,10 @@
 &lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../&lt;/p&gt;
 &lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/directorylisting.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Reading the WEB-INF/pages.xml, we can view that there is a flag.xhtml, and we can deduce there is a flag.seam too. However, we saw that we must be admin to access it. &lt;/p&gt;
-&lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../WEB-INF/pages.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://52.198.197.227:8080/angryseam/css.seam?location&lt;span class="o"&gt;=&lt;/span&gt;../../../WEB-INF/pages.xml
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/pagesxml.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The first thing I tried, with little hope, was to play with the session. &lt;strong&gt;Logged in as lambda user&lt;/strong&gt;, I tried to go on register.seam and register with "admin" username.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/registerAdmin.png" /&gt;&lt;/p&gt;
