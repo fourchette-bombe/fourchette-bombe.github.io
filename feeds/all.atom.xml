@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/all.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:10:00+02:00</updated><entry><title>Hackit 2016 Quals - Electronicon</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html" rel="alternate"></link><published>2016-10-04T10:10:00+02:00</published><updated>2016-10-04T10:10:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-electronicon.html</id><summary type="html">&lt;h4&gt;Hackit 2016 Quals - Electronicon&lt;/h4&gt;
 &lt;h4&gt;PPC - 250 pts&lt;/h4&gt;
-&lt;p&gt;This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)&lt;/p&gt;
-&lt;p&gt;h4ck1t{flag.upper()}&lt;/p&gt;
+&lt;p&gt;This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
+h4ck1t{flag.upper()}&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/pain.txt"&gt;Here&lt;/a&gt; is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :&lt;/p&gt;
 &lt;p&gt;&lt;img alt="firstSight" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/firstSight.png" /&gt;&lt;/p&gt;
 &lt;p&gt;At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.&lt;/p&gt;
