@@ -74,7 +74,8 @@
 &lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_electronicon/ppc.py"&gt;ppc.py&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Flag&lt;/strong&gt; : h4ck1t{1_LOV3_3P1C_F0NT$}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Handmade encryption standard</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-handmade-encryption-standard.html" rel="alternate"></link><published>2016-10-04T10:10:00+02:00</published><updated>2016-10-04T10:10:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-handmade-encryption-standard.html</id><summary type="html">&lt;h3&gt;Crypto - 250 pts&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Times are getting harder and harder for Gen.Tompson.
-I`m soldier Alderson and some time ago we got this Rijndael cipher: \xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07\x1a\x61\xf2\x81\x0f\xfe\xc6\x6e\x36\xc5\x7b\xd6\x9c\xca\x05\x93\x76\x43\xa9\x08\x45\xa4\x8f\x88\xb9\x31\x7e\x22\x7f\x00\x00\x48\xb7\x31\x7e\x22\x7f\x00\x00
+I`m soldier Alderson and some time ago we got this Rijndael cipher:
+\xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07\x1a\x61\xf2\x81\x0f\xfe\xc6\x6e\x36\xc5\x7b\xd6\x9c\xca\x05\x93\x76\x43\xa9\x08\x45\xa4\x8f\x88\xb9\x31\x7e\x22\x7f\x00\x00\x48\xb7\x31\x7e\x22\x7f\x00\x00
 And we have even intercepted its key(!):
 21449030350486006488383082093598
 But the problem is that decryption operation have failed somehow =(
