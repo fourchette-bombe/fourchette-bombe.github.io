@@ -31,11 +31,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Pod" />
-<meta name="description" content="Stegano - 150 pts * Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information. And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your ..." />
+<meta name="description" content="Stegano - 150 pts Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information. And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your ..." />
 <meta name="keywords" content="ctf, writeup, stegano">
 <meta property="og:site_name" content="Fourchette Bombe"/>
 <meta property="og:title" content="Hackit 2016 Quals - Writeup 1magePr1son"/>
-<meta property="og:description" content="Stegano - 150 pts * Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information. And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your ..."/>
+<meta property="og:description" content="Stegano - 150 pts Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information. And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your ..."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-writeup-1magepr1son.html"/>
 <meta property="og:type" content="article"/>
@@ -99,16 +99,15 @@
   </header>
   <div>
     <h4>Stegano - 150 pts</h4>
-<div class="highlight"><pre><span></span>* Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
-And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
-h4ck1t{str(flag).upper()}
-</pre></div>
-
-
+<ul>
+<li>Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
+ And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
+ h4ck1t{str(flag).upper()}</li>
+</ul>
 <p>In this challenge, we're given a picture which is a beautiful wallpaper</p>
-<p><img alt="Space Wallpaper" src="../../images/1magePr1son/planet.png" /></p>
+<p><img alt="Space Wallpaper" src="http://blog.fourchette-bombe.com/images/1magePr1son/planet.png" /></p>
 <p>If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents</p>
-<p><img alt="Zoom on the wallpaper" src="../../images/1magePr1son/planet_zoom.png" /></p>
+<p><img alt="Zoom on the wallpaper" src="http://blog.fourchette-bombe.com/images/1magePr1son/planet_zoom.png" /></p>
 <p>Theses pixels are placed every 25 pixels (24 "normal" pixels between each "abnormal" pixel)</p>
 <p>So we try to create an image with only theses pixels. We got this tiny python code :</p>
 <div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
@@ -132,7 +131,7 @@ h4ck1t{str(flag).upper()}
 
 
 <p>And the image we receive gives us the flag :</p>
-<p><img alt="recovered image" src="../../images/1magePr1son/final.png" /></p>
+<p><img alt="recovered image" src="http://blog.fourchette-bombe.com/images/1magePr1son/final.png" /></p>
 <p>Flag : h4ck1t{SPACE_IS_THE_KEY}</p>
   </div>
   <div class="tag-cloud">
