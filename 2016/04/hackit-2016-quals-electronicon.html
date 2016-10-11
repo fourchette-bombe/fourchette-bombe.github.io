@@ -31,11 +31,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Pod" />
-<meta name="description" content="Hackit 2016 Quals - Electronicon PPC - 250 pts This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) h4ck1t{flag.upper()} Our Menu Here is the text file given with the challenge. We open this ..." />
+<meta name="description" content="Hackit 2016 Quals - Electronicon PPC - 250 pts This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) h4ck1t{flag.upper()} Here is the text file given with the challenge. We open this file with ..." />
 <meta name="keywords" content="ctf, writeup, PPC">
 <meta property="og:site_name" content="Fourchette Bombe"/>
 <meta property="og:title" content="Hackit 2016 Quals - Electronicon"/>
-<meta property="og:description" content="Hackit 2016 Quals - Electronicon PPC - 250 pts This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) h4ck1t{flag.upper()} Our Menu Here is the text file given with the challenge. We open this ..."/>
+<meta property="og:description" content="Hackit 2016 Quals - Electronicon PPC - 250 pts This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) h4ck1t{flag.upper()} Here is the text file given with the challenge. We open this file with ..."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html"/>
 <meta property="og:type" content="article"/>
@@ -102,9 +102,8 @@
 <h4>PPC - 250 pts</h4>
 <p>This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
 h4ck1t{flag.upper()}</p>
-<p><a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/pain.txt">Our Menu</a></p>
-<p><a href="pain.txt">Here</a> is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :</p>
-<p><img alt="File" src="../../images/hackit_electronicon/firstSight.png" /></p>
+<p><a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/pain.txt">Here</a> is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :</p>
+<p><img alt="File" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/firstSight.png" /></p>
 <p>At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.</p>
 <p>So to make the recognition, we first need patterns of different hexadecimal characters. To do this, I created a little python code which takes an multiplier as input that we can change by hand to describe which letter we are cutting out.</p>
 <p>We must here pay attention to use codecs and utf-8 encoding to avoid problems or unwanted errors.</p>
@@ -166,11 +165,11 @@ h4ck1t{flag.upper()}</p>
 
 
 <p>We run the python script (about 50 seconds runtime here) and then we got a new file created. A simple <code>file solve</code> in the terminal prompt will help us to know what to do next.</p>
-<p><img alt="file solve" src="../../images/electronicon/file_result.png" /></p>
+<p><img alt="file solve" src="{filename}/images/electronicon/file_result.png" /></p>
 <p>Luckily, the file is a jpg file. We add the extension and open it. Here we go, flag is showing !</p>
-<p><img alt="flag" src="../../images/electronicon/solve.jpg" /></p>
-<p><img alt="createPatterns.py" src="../../code/hackit_electronicon/createPatterns.py" />
-<img alt="ppc.py" src="../../code/hackit_electronicon/ppc.py" /></p>
+<p><img alt="flag" src="{filename}/images/electronicon/solve.jpg" /></p>
+<p><img alt="createPatterns.py" src="http://blog.fourchette-bombe.com/code/hackit_electronicon/createPatterns.py" />
+<img alt="ppc.py" src="http://blog.fourchette-bombe.com/code/hackit_electronicon/ppc.py" /></p>
 <p><strong>Flag</strong> : h4ck1t{1_LOV3_3P1C_F0NT$}</p>
   </div>
   <div class="tag-cloud">
