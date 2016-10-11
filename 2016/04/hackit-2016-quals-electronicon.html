@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://blog.fourchette-bombe.com/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://blog.fourchette-bombe.com/theme/pygments/monokai.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.fourchette-bombe.com/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://blog.fourchette-bombe.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Fourchette Bombe Atom">
+
+
+    <link rel="shortcut icon" href="http://blog.fourchette-bombe.com/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://blog.fourchette-bombe.com/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Pod" />
+<meta name="description" content="Hackit 2016 Quals - Electronicon PPC - 250 pts This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) h4ck1t{flag.upper()} Here is the text file given with the challenge. We open this file with ..." />
+<meta name="keywords" content="ctf, writeup, PPC">
+<meta property="og:site_name" content="Fourchette Bombe"/>
+<meta property="og:title" content="Hackit 2016 Quals - Electronicon"/>
+<meta property="og:description" content="Hackit 2016 Quals - Electronicon PPC - 250 pts This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) h4ck1t{flag.upper()} Here is the text file given with the challenge. We open this file with ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-10-04 10:10:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.fourchette-bombe.com/author/pod.html">
+<meta property="article:section" content="writeups"/>
+<meta property="article:tag" content="ctf"/>
+<meta property="article:tag" content="writeup"/>
+<meta property="article:tag" content="PPC"/>
+<meta property="og:image" content="http://blog.fourchette-bombe.com/images/logo.png">
+
+  <title>Fourchette Bombe &ndash; Hackit 2016 Quals - Electronicon</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.fourchette-bombe.com">
+        <img src="http://blog.fourchette-bombe.com/images/logo.png" alt="Fourchette Bombe" title="Fourchette Bombe">
+      </a>
+      <h1><a href="http://blog.fourchette-bombe.com">Fourchette Bombe</a></h1>
+
+<p>Keep Calme Like A Bombe</p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://blog.fourchette-bombe.com/pages/about.html#about">About</a></li>
+          <li><a href="http://blog.fourchette-bombe.com/pages/disclaimer.html#disclaimer">Disclaimer</a></li>
+
+          <li><a href="https://ctftime.org/team/1833" target="_blank">CTF Team</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/0xboogy" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/boogy" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-rss" href="/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.fourchette-bombe.com">Home</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pages/disclaimer.html">Disclaimer</a>
+      <a href="/pages/about.html">About</a>
+
+      <a href="http://blog.fourchette-bombe.com/feeds/all.atom.xml">Atom</a>
+
+    </nav>
+
+<article>
+  <header>
+    <h1 id="hackit-2016-quals-electronicon">Hackit 2016 Quals - Electronicon</h1>
+    <p>
+      Posted on Tue 04 October 2016 in <a href="http://blog.fourchette-bombe.com/category/writeups.html">writeups</a>
+
+    </p>
+  </header>
+  <div>
+    <h4>Hackit 2016 Quals - Electronicon</h4>
+<h4>PPC - 250 pts</h4>
+<div class="highlight"><pre><span></span>This task is one of the methods for the psychological attacks. It is intended for people who don&#39;t have heart diseases and reached 18 years ;)
+h4ck1t{flag.upper()}
+</pre></div>
+
+
+<p><a href="pain.txt">Here</a> is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :</p>
+<p><img alt="File" src="firstSight.png" /></p>
+<p>At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.</p>
+<p>So to make the recognition, we first need patterns of different hexadecimal characters. To do this, I created a little python code which takes an multiplier as input that we can change by hand to describe which letter we are cutting out.</p>
+<p>We must here pay attention to use codecs and utf-8 encoding to avoid problems or unwanted errors.</p>
+<div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Pod for Team Fourchette Bombe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;pain.txt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">flines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="n">length</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">multiplier</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">multiplier</span><span class="o">*</span><span class="n">length</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">flines</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">length</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="n">flines</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">offset</span><span class="p">];</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;painPatterns/out&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This code will create a file in the folder painPatterns with the letter designed by the multiplier. For example here, with <code>multiplier = 1</code>, we extract letter <code>F</code> and with <code>multiplier = 2</code> we extract <code>D</code>.</p>
+<p>To find which multiplier we need, a good and easy way is to place our cursor in one letter, check the Column number in the bottom left of Sublime Text and divide this number by the length (here 13). The integer value will be the multiplier.</p>
+<p>Once we created all patterns with this kind of code, we can begin the character recognition. We use this little python code. 
+    :::python
+    '''
+    Pod for Team Fourchette Bombe
+    '''
+    import codecs
+    f = codecs.open('pain.txt',encoding='utf-8')
+    flines = f.readlines()</p>
+<div class="highlight"><pre><span></span>chars = (&#39;0&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;,&#39;6&#39;,&#39;7&#39;,&#39;8&#39;,&#39;9&#39;,&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;,&#39;f&#39;)
+
+solve = &#39;&#39;
+
+for i in range(0,len(flines[0]),13):
+    for j in range(0,len(chars)):
+        fp = codecs.open(&#39;./painPatterns/&#39;+chars[j], encoding=&#39;utf-8&#39;)
+        lines = fp.readlines() 
+        Found = True
+        for l in range(0,11):
+            for c in range(0,13):
+                if (flines[l][i+c] != lines[l][c]):
+                    Found = False;
+                    break;
+
+            if not Found:
+                break;
+        if Found:
+            solve += chars[j];
+            break;
+
+endf = open(&#39;solve&#39;,&#39;w&#39;);
+endf.write(solve.decode(&#39;hex&#39;));
+</pre></div>
+
+
+<p>We run the python script (about 50 seconds runtime here) and then we got a new file created. A simple <code>file solve</code> in the terminal prompt will help us to know what to do next.</p>
+<p><img alt="file solve" src="file_result.png" /></p>
+<p>Luckily, the file is a jpg file. We add the extension and open it. Here we go, flag is showing !</p>
+<p><img alt="flag" src="solve.jpg" /></p>
+<p><strong>Flag</strong> : h4ck1t{1_LOV3_3P1C_F0NT$}</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.fourchette-bombe.com/tag/ctf.html">ctf</a>
+      <a href="http://blog.fourchette-bombe.com/tag/writeup.html">writeup</a>
+      <a href="http://blog.fourchette-bombe.com/tag/ppc.html">PPC</a>
+    </p>
+  </div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'http-blog-fourchette-bombe-com';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Fourchette-bombe 2016</p>
+<p>Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Fourchette Bombe ",
+  "url" : "http://blog.fourchette-bombe.com",
+  "image": "http://blog.fourchette-bombe.com/images/logo.png",
+  "description": "Subtitle"
+}
+</script>
+</body>
+</html>
