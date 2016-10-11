@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/all.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:20:00+02:00</updated><entry><title>Hackit 2016 Quals - Handmade encryption standard</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-handmade-encryption-standard.html" rel="alternate"></link><published>2016-10-04T10:20:00+02:00</published><updated>2016-10-04T10:20:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-handmade-encryption-standard.html</id><summary type="html">&lt;h3&gt;Crypto - 250 pts&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/all.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:30:00+02:00</updated><entry><title>HITCON CTF 2016 Quals Angry Seam Writeup</title><link href="http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html" rel="alternate"></link><published>2016-10-04T10:30:00+02:00</published><updated>2016-10-04T10:30:00+02:00</updated><author><name>Blaklis</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</id><summary type="html">&lt;h4&gt;Web (500 pts)&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/login.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The first page we can see is a login page. Hanging around a little, we can list a few interesting pages :
+  - The css.seam page take a filename as parameter.
+  - The logout button take a parameter that corresponds to "view:object.method" format.
+  - The report.seam page permits to send a URL to the administrator, but only URL that is intern to the application.&lt;/p&gt;
+&lt;p&gt;With the css.seam page, we can list directories and files at the root of the application :&lt;/p&gt;
+&lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/directorylisting.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Reading the WEB-INF/pages.xml, we can view that there is a flag.xhtml, and we can deduce there is a flag.seam too. However, we saw that we must be admin to access it. &lt;/p&gt;
+&lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../WEB-INF/pages.xml&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/pagesxml.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The first thing I tried, with little hope, was to play with the session. &lt;strong&gt;Logged in as lambda user&lt;/strong&gt;, I tried to go on register.seam and register with "admin" username.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/registerAdmin.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Error message, the user is existing. But... it changed my session, and I'm logged in as admin now! I can browse the flag.seam as admin, and tada!, the flag.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/flag.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm pretty sure this wasn't the intended way to solve this. But... I think it was the easiest way to do it! :)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blaklis from Fourchette-Bombe&lt;/em&gt;&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Handmade encryption standard</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-handmade-encryption-standard.html" rel="alternate"></link><published>2016-10-04T10:20:00+02:00</published><updated>2016-10-04T10:20:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-handmade-encryption-standard.html</id><summary type="html">&lt;h3&gt;Crypto - 250 pts&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Times are getting harder and harder for Gen.Tompson.
 I`m soldier Alderson and some time ago we got this Rijndael cipher:
 \xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07\x1a\x61\xf2\x81\x0f\xfe\xc6\x6e\x36\xc5\x7b\xd6\x9c\xca\x05\x93\x76\x43\xa9\x08\x45\xa4\x8f\x88\xb9\x31\x7e\x22\x7f\x00\x00\x48\xb7\x31\x7e\x22\x7f\x00\x00

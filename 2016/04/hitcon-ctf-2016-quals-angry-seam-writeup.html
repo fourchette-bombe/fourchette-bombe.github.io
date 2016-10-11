@@ -30,17 +30,25 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <meta name="author" content="Fourchette-bombe" />
-    <meta name="description" content="Subtitle" />
+<meta name="author" content="Blaklis" />
+<meta name="description" content="Web (500 pts) The first page we can see is a login page. Hanging around a little, we can list a few interesting pages : - The css.seam page take a filename as parameter. - The logout button take a parameter that corresponds to "view:object.method" format. - The report.seam page ..." />
+<meta name="keywords" content="ctf, writeup, PPC">
 <meta property="og:site_name" content="Fourchette Bombe"/>
-<meta property="og:type" content="blog"/>
-<meta property="og:title" content="Fourchette Bombe"/>
-<meta property="og:description" content="Subtitle"/>
+<meta property="og:title" content="HITCON CTF 2016 Quals Angry Seam Writeup"/>
+<meta property="og:description" content="Web (500 pts) The first page we can see is a login page. Hanging around a little, we can list a few interesting pages : - The css.seam page take a filename as parameter. - The logout button take a parameter that corresponds to "view:object.method" format. - The report.seam page ..."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="http://blog.fourchette-bombe.com"/>
+<meta property="og:url" content="http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-10-04 10:30:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.fourchette-bombe.com/author/blaklis.html">
+<meta property="article:section" content="writeups"/>
+<meta property="article:tag" content="ctf"/>
+<meta property="article:tag" content="writeup"/>
+<meta property="article:tag" content="PPC"/>
 <meta property="og:image" content="http://blog.fourchette-bombe.com/images/logo.png">
 
-  <title>Fourchette Bombe &ndash; Tag PPC</title>
+  <title>Fourchette Bombe &ndash; HITCON CTF 2016 Quals Angry Seam Writeup</title>
 </head>
 <body>
   <aside>
@@ -83,50 +91,55 @@
 
 <article>
   <header>
-    <h2><a href="http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html#hitcon-ctf-2016-quals-angry-seam-writeup">HITCON CTF 2016 Quals Angry Seam Writeup</a></h2>
+    <h1 id="hitcon-ctf-2016-quals-angry-seam-writeup">HITCON CTF 2016 Quals Angry Seam Writeup</h1>
     <p>
       Posted on Tue 04 October 2016 in <a href="http://blog.fourchette-bombe.com/category/writeups.html">writeups</a>
 
-          &#8226; Tagged with
-              <a href="http://blog.fourchette-bombe.com/tag/ctf.html">ctf</a>,              <a href="http://blog.fourchette-bombe.com/tag/writeup.html">writeup</a>,              <a href="http://blog.fourchette-bombe.com/tag/ppc.html">PPC</a>
     </p>
   </header>
   <div>
-      <h4>Web (500 pts)</h4>
+    <h4>Web (500 pts)</h4>
 <p><img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/login.png" /></p>
 <p>The first page we can see is a login page. Hanging around a little, we can list a few interesting pages :
   - The css.seam page take a filename as parameter.
   - The logout button take a parameter that corresponds to "view:object.method" format.
-  - The report.seam page ...</p>
-      <br>
-      <a class="btn" href="http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html#hitcon-ctf-2016-quals-angry-seam-writeup">Continue reading</a>
+  - The report.seam page permits to send a URL to the administrator, but only URL that is intern to the application.</p>
+<p>With the css.seam page, we can list directories and files at the root of the application :</p>
+<p>http://52.198.197.227:8080/angryseam/css.seam?location=../../../</p>
+<p><img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/directorylisting.png" /></p>
+<p>Reading the WEB-INF/pages.xml, we can view that there is a flag.xhtml, and we can deduce there is a flag.seam too. However, we saw that we must be admin to access it. </p>
+<p>http://52.198.197.227:8080/angryseam/css.seam?location=../../../WEB-INF/pages.xml</p>
+<p><img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/pagesxml.png" /></p>
+<p>The first thing I tried, with little hope, was to play with the session. <strong>Logged in as lambda user</strong>, I tried to go on register.seam and register with "admin" username.</p>
+<p><img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/registerAdmin.png" /></p>
+<p>Error message, the user is existing. But... it changed my session, and I'm logged in as admin now! I can browse the flag.seam as admin, and tada!, the flag.</p>
+<p><img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/flag.png" /></p>
+<p>I'm pretty sure this wasn't the intended way to solve this. But... I think it was the easiest way to do it! :)</p>
+<p><em>Blaklis from Fourchette-Bombe</em></p>
   </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html#hackit-2016-quals-electronicon">Hackit 2016 Quals - Electronicon</a></h2>
+  <div class="tag-cloud">
     <p>
-      Posted on Tue 04 October 2016 in <a href="http://blog.fourchette-bombe.com/category/writeups.html">writeups</a>
-
-          &#8226; Tagged with
-              <a href="http://blog.fourchette-bombe.com/tag/ctf.html">ctf</a>,              <a href="http://blog.fourchette-bombe.com/tag/writeup.html">writeup</a>,              <a href="http://blog.fourchette-bombe.com/tag/ppc.html">PPC</a>
+      <a href="http://blog.fourchette-bombe.com/tag/ctf.html">ctf</a>
+      <a href="http://blog.fourchette-bombe.com/tag/writeup.html">writeup</a>
+      <a href="http://blog.fourchette-bombe.com/tag/ppc.html">PPC</a>
     </p>
-  </header>
-  <div>
-      <h4>PPC - 250 pts</h4>
-<ul>
-<li>This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
- h4ck1t{flag.upper()}</li>
-</ul>
-<p><a href="http://blog.fourchette-bombe.com/downloads/hackit_electronicon/pain.txt">Here</a> is the text file given with the challenge. We open this file with SublimeText for example, deactivate ...</p>
-      <br>
-      <a class="btn" href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html#hackit-2016-quals-electronicon">Continue reading</a>
   </div>
-</article>
 
-  <div class="pagination">
-  </div>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'http-blog-fourchette-bombe-com';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+</article>
 
     <footer>
 <p>&copy; Fourchette-bombe 2016</p>
