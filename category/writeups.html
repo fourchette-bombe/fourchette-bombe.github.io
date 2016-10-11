@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Fourchette Bombe CTF Team - writeups</title>
+        <link rel="stylesheet" href="http://blog.fourchette-bombe.com/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://blog.fourchette-bombe.com/">Fourchette Bombe CTF Team </a></h1>
+                <nav><ul>
+                    <li><a href="/categories.html">Categories</a></li>
+                    <li><a href="/pages/disclaimer.html">Disclaimer</a></li>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="http://blog.fourchette-bombe.com/category/writeups.html">writeups</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://blog.fourchette-bombe.com/2016/11/hackit-2016-quals-writeup-1magepr1son.html">Hackit 2016 Quals - Writeup 1magePr1son</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-10-11T10:00:00+02:00">
+                Published: Tue 11 October 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://blog.fourchette-bombe.com/author/fourchette-bombe.html">fourchette-bombe</a>
+        </address>
+<p>In <a href="http://blog.fourchette-bombe.com/category/writeups.html">writeups</a>.</p>
+
+</footer><!-- /.post-info --><h1>Hackit 2016 Quals - 1magePr1son</h1>
+<h3>Stegano - 150 pts</h3>
+<div class="highlight"><pre><span></span><span class="n">EN</span><span class="o">:</span> <span class="n">Implementing</span> <span class="n">of</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">encryption</span> <span class="n">system</span> <span class="k">as</span> <span class="n">always</span> <span class="n">brought</span> <span class="n">a</span> <span class="kd">set</span> <span class="n">of</span> <span class="n">problems</span> <span class="k">for</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">known</span> <span class="n">FSI</span> <span class="n">services</span><span class="o">:</span> <span class="n">they</span> <span class="n">have</span> <span class="n">lost</span> <span class="n">the</span> <span class="n">module</span> <span class="n">which</span> <span class="k">is</span> <span class="n">responsible</span> <span class="k">for</span> <span class="n">decoding</span> <span class="n">information</span><span class="o">.</span> <span class="n">And</span> <span class="n">some</span> <span class="n">information</span> <span class="n">has</span> <span class="n">https</span><span class="o">://</span><span class="n">ctf</span><span class="o">.</span><span class="na">com</span><span class="o">.</span><span class="na">ua</span><span class="sr">/data/attachments/</span><span class="n">planet_982680d78ab9718f5a335ec05ebc4ea2</span><span class="o">.</span><span class="na">png</span><span class="o">.</span><span class="na">zipeen</span> <span class="n">already</span> <span class="n">ciphered</span><span class="o">!</span> <span class="n">Your</span> <span class="n">task</span> <span class="k">for</span> <span class="n">today</span><span class="o">:</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">cryptoalgorithm</span> <span class="n">and</span> <span class="n">decode</span> <span class="n">the</span> <span class="n">message</span><span class="o">.</span>
+<span class="n">h4ck1t</span><span class="o">{</span><span class="n">str</span><span class="o">(</span><span class="n">flag</span><span class="o">).</span><span class="n">upper</span><span class="o">()}</span>
+</pre></div>
+
+
+<p>In this challenge, we're given a picture which is a beautiful wallpaper</p>
+<p><img alt="Space Wallpaper" src="../images/1magePr1son/planet.png" /></p>
+<p>If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents</p>
+<p><img alt="Zoom on the wallpaper" src="../images/1magePr1son/planet_zoom.png" /></p>
+<p>Theses pixels are placed every 25 pixels (24 "normal" pixels between each "abnormal" pixel)</p>
+<p>So we try to create an image with only theses pixels. We got this tiny python code :</p>
+<div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Pod for Team Fourchette Bombe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span> <span class="s1">&#39;planet.png&#39;</span> <span class="p">)</span>
+<span class="n">newIm</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">66</span><span class="p">),</span><span class="s2">&quot;yellow&quot;</span><span class="p">);</span>
+
+<span class="n">pixels</span> <span class="o">=</span> <span class="n">newIm</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">pixelsIm</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">66</span><span class="p">):</span>
+        <span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pixelsIm</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">24</span><span class="p">,</span><span class="n">j</span><span class="o">*</span><span class="mi">24</span><span class="p">]</span>
+
+<span class="n">newIm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">newIm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;final.png&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>And the image we receive gives us the flag :</p>
+<p><img alt="recovered image" src="../images/1magePr1son/final.png" /></p>
+<p>Flag : h4ck1t{SPACE_IS_THE_KEY}</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="https://ctftime.org/team/1833">CTF Team</a></li>
+                            <li><a href="http://0xecute.com">0xecute</a></li>
+                            <li><a href="http://blog.stalkr.net/">stalkr</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://twitter.com/0xboogy">twitter</a></li>
+                            <li><a href="https://github.com/boogy">github</a></li>
+                            <li><a href="/feeds/all.atom.xml">rss</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
