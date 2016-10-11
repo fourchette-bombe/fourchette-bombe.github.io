@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/writeups.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:30:00+02:00</updated><entry><title>HITCON CTF 2016 Quals Angry Seam Writeup</title><link href="http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html" rel="alternate"></link><published>2016-10-04T10:30:00+02:00</published><updated>2016-10-04T10:30:00+02:00</updated><author><name>Blaklis</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</id><summary type="html">&lt;h4&gt;Web (500 pts)&lt;/h4&gt;
-&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/login.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The first page we can see is a login page. Hanging around a little, we can list a few interesting pages :
   - The css.seam page take a filename as parameter.
   - The logout button take a parameter that corresponds to "view:object.method" format.
   - The report.seam page permits to send a URL to the administrator, but only URL that is intern to the application.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/login.png" /&gt;&lt;/p&gt;
 &lt;p&gt;With the css.seam page, we can list directories and files at the root of the application :&lt;/p&gt;
 &lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../&lt;/p&gt;
 &lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/directorylisting.png" /&gt;&lt;/p&gt;
