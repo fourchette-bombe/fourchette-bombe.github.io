@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/all.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:10:00+02:00</updated><entry><title>Hackit 2016 Quals - Electronicon</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html" rel="alternate"></link><published>2016-10-04T10:10:00+02:00</published><updated>2016-10-04T10:10:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-electronicon.html</id><summary type="html">&lt;h4&gt;PPC - 250 pts&lt;/h4&gt;
-&lt;p&gt;This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;) 
-h4ck1t{flag.upper()}&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* This task is one of the methods for the psychological attacks. It is intended for people who don&amp;#39;t have heart diseases and reached 18 years ;)
+h4ck1t{flag.upper()}
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/pain.txt"&gt;Here&lt;/a&gt; is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :&lt;/p&gt;
 &lt;p&gt;&lt;img alt="firstSight" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/firstSight.png" /&gt;&lt;/p&gt;
 &lt;p&gt;At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.&lt;/p&gt;
@@ -71,9 +74,12 @@ h4ck1t{flag.upper()}&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/createPatterns.py"&gt;createPatterns.py&lt;/a&gt;
 &lt;a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/ppc.py"&gt;ppc.py&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Flag&lt;/strong&gt; : h4ck1t{1_LOV3_3P1C_F0NT$}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Writeup 1magePr1son</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-writeup-1magepr1son.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-writeup-1magepr1son.html</id><summary type="html">&lt;h4&gt;Stegano - 150 pts&lt;/h4&gt;
-&lt;p&gt;Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
 And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
-h4ck1t{str(flag).upper()}&lt;/p&gt;
+h4ck1t{str(flag).upper()}
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;In this challenge, we're given a picture which is a beautiful wallpaper&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Space Wallpaper" src="../../images/1magePr1son/planet.png" /&gt;&lt;/p&gt;
 &lt;p&gt;If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents&lt;/p&gt;
