@@ -3,7 +3,7 @@
 &lt;h4&gt;PPC - 250 pts&lt;/h4&gt;
 &lt;p&gt;This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
 h4ck1t{flag.upper()}&lt;/p&gt;
-&lt;p&gt;&lt;a href="{filename}/code/hackit_electronicon/plain.txt"&gt;Our Menu&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/pain.txt"&gt;Our Menu&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="pain.txt"&gt;Here&lt;/a&gt; is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :&lt;/p&gt;
 &lt;p&gt;&lt;img alt="File" src="../../images/hackit_electronicon/firstSight.png" /&gt;&lt;/p&gt;
 &lt;p&gt;At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.&lt;/p&gt;
