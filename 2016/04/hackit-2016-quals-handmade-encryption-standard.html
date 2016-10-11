@@ -120,7 +120,7 @@ P.S General Tompson can`t talk right now.
 Once we've got a group like this one : <code>(a,b,c)</code> we got only 2 permutations which changes all three elements :
 - <code>(b,c,a)</code>
 - <code>(c,a,b)</code></p>
-<p>Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : <img alt="2*((256)!/((256-3)!*3!))" src="equation.gif" /><code>= 5 527 040</code> possibilities which is by far vulnerable to bruteforcing.</p>
+<p>Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : <img alt="2*((256)!/((256-3)!*3!))" src="http://blog.fourchette-bombe.com/images/hackit_handmade_encryption_standard/equation.gif" /><code>= 5 527 040</code> possibilities which is by far vulnerable to bruteforcing.</p>
 <p>So in our code, we first need to generate all permutations with this :</p>
 <div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
 <span class="k">const</span> <span class="kt">int</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>

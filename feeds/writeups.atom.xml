@@ -94,7 +94,7 @@ P.S General Tompson can`t talk right now.
 Once we've got a group like this one : &lt;code&gt;(a,b,c)&lt;/code&gt; we got only 2 permutations which changes all three elements :
 - &lt;code&gt;(b,c,a)&lt;/code&gt;
 - &lt;code&gt;(c,a,b)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : &lt;img alt="2*((256)!/((256-3)!*3!))" src="equation.gif" /&gt;&lt;code&gt;= 5 527 040&lt;/code&gt; possibilities which is by far vulnerable to bruteforcing.&lt;/p&gt;
+&lt;p&gt;Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : &lt;img alt="2*((256)!/((256-3)!*3!))" src="http://blog.fourchette-bombe.com/images/hackit_handmade_encryption_standard/equation.gif" /&gt;&lt;code&gt;= 5 527 040&lt;/code&gt; possibilities which is by far vulnerable to bruteforcing.&lt;/p&gt;
 &lt;p&gt;So in our code, we first need to generate all permutations with this :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
