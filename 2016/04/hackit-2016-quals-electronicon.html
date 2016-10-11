@@ -100,10 +100,10 @@
   <div>
     <h4>Hackit 2016 Quals - Electronicon</h4>
 <h4>PPC - 250 pts</h4>
-<p>This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
-h4ck1t{flag.upper()}</p>
+<p>This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)</p>
+<p>h4ck1t{flag.upper()}</p>
 <p><a href="http://blog.fourchette-bombe.com/code/hackit_electronicon/pain.txt">Here</a> is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :</p>
-<p><img alt="File" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/firstSight.png" /></p>
+<p><img alt="firstSight" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/firstSight.png" /></p>
 <p>At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.</p>
 <p>So to make the recognition, we first need patterns of different hexadecimal characters. To do this, I created a little python code which takes an multiplier as input that we can change by hand to describe which letter we are cutting out.</p>
 <p>We must here pay attention to use codecs and utf-8 encoding to avoid problems or unwanted errors.</p>
@@ -167,7 +167,7 @@ h4ck1t{flag.upper()}</p>
 <p>We run the python script (about 50 seconds runtime here) and then we got a new file created. A simple <code>file solve</code> in the terminal prompt will help us to know what to do next.</p>
 <p><img alt="file solve" src="{filename}/images/electronicon/file_result.png" /></p>
 <p>Luckily, the file is a jpg file. We add the extension and open it. Here we go, flag is showing !</p>
-<p><img alt="flag" src="{filename}/images/electronicon/solve.jpg" /></p>
+<p><img alt="flag" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/solve.jpg" /></p>
 <p><img alt="createPatterns.py" src="http://blog.fourchette-bombe.com/code/hackit_electronicon/createPatterns.py" />
 <img alt="ppc.py" src="http://blog.fourchette-bombe.com/code/hackit_electronicon/ppc.py" /></p>
 <p><strong>Flag</strong> : h4ck1t{1_LOV3_3P1C_F0NT$}</p>
