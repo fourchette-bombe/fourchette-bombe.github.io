@@ -100,11 +100,8 @@
   <div>
     <h4>Hackit 2016 Quals - Electronicon</h4>
 <h4>PPC - 250 pts</h4>
-<div class="highlight"><pre><span></span>This task is one of the methods for the psychological attacks. It is intended for people who don&#39;t have heart diseases and reached 18 years ;)
-h4ck1t{flag.upper()}
-</pre></div>
-
-
+<p>This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
+h4ck1t{flag.upper()}</p>
 <p><a href="pain.txt">Here</a> is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :</p>
 <p><img alt="File" src="firstSight.png" /></p>
 <p>At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.</p>
@@ -133,37 +130,37 @@ h4ck1t{flag.upper()}
 
 <p>This code will create a file in the folder painPatterns with the letter designed by the multiplier. For example here, with <code>multiplier = 1</code>, we extract letter <code>F</code> and with <code>multiplier = 2</code> we extract <code>D</code>.</p>
 <p>To find which multiplier we need, a good and easy way is to place our cursor in one letter, check the Column number in the bottom left of Sublime Text and divide this number by the length (here 13). The integer value will be the multiplier.</p>
-<p>Once we created all patterns with this kind of code, we can begin the character recognition. We use this little python code. 
-    :::python
-    '''
-    Pod for Team Fourchette Bombe
-    '''
-    import codecs
-    f = codecs.open('pain.txt',encoding='utf-8')
-    flines = f.readlines()</p>
-<div class="highlight"><pre><span></span>chars = (&#39;0&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;,&#39;6&#39;,&#39;7&#39;,&#39;8&#39;,&#39;9&#39;,&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;,&#39;f&#39;)
+<p>Once we created all patterns with this kind of code, we can begin the character recognition. We use this little python code. </p>
+<div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Pod for Team Fourchette Bombe</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;pain.txt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">flines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 
-solve = &#39;&#39;
+<span class="n">chars</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">,</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="s1">&#39;9&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
 
-for i in range(0,len(flines[0]),13):
-    for j in range(0,len(chars)):
-        fp = codecs.open(&#39;./painPatterns/&#39;+chars[j], encoding=&#39;utf-8&#39;)
-        lines = fp.readlines() 
-        Found = True
-        for l in range(0,11):
-            for c in range(0,13):
-                if (flines[l][i+c] != lines[l][c]):
-                    Found = False;
-                    break;
+<span class="n">solve</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-            if not Found:
-                break;
-        if Found:
-            solve += chars[j];
-            break;
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">flines</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="mi">13</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)):</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./painPatterns/&#39;</span><span class="o">+</span><span class="n">chars</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> 
+        <span class="n">Found</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">flines</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="n">c</span><span class="p">]</span> <span class="o">!=</span> <span class="n">lines</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">c</span><span class="p">]):</span>
+                    <span class="n">Found</span> <span class="o">=</span> <span class="bp">False</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
 
-endf = open(&#39;solve&#39;,&#39;w&#39;);
-endf.write(solve.decode(&#39;hex&#39;));
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">Found</span><span class="p">:</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="k">if</span> <span class="n">Found</span><span class="p">:</span>
+            <span class="n">solve</span> <span class="o">+=</span> <span class="n">chars</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+            <span class="k">break</span><span class="p">;</span>
+
+<span class="n">endf</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;solve&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
+<span class="n">endf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">solve</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">));</span>
 </pre></div>
 
 

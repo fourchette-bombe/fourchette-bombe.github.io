@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/writeups.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:10:00+02:00</updated><entry><title>Hackit 2016 Quals - Electronicon</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html" rel="alternate"></link><published>2016-10-04T10:10:00+02:00</published><updated>2016-10-04T10:10:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-electronicon.html</id><summary type="html">&lt;h4&gt;Hackit 2016 Quals - Electronicon&lt;/h4&gt;
 &lt;h4&gt;PPC - 250 pts&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;This task is one of the methods for the psychological attacks. It is intended for people who don&amp;#39;t have heart diseases and reached 18 years ;)
-h4ck1t{flag.upper()}
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
+h4ck1t{flag.upper()}&lt;/p&gt;
 &lt;p&gt;&lt;a href="pain.txt"&gt;Here&lt;/a&gt; is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :&lt;/p&gt;
 &lt;p&gt;&lt;img alt="File" src="firstSight.png" /&gt;&lt;/p&gt;
 &lt;p&gt;At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.&lt;/p&gt;
@@ -34,37 +31,37 @@ h4ck1t{flag.upper()}
 
 &lt;p&gt;This code will create a file in the folder painPatterns with the letter designed by the multiplier. For example here, with &lt;code&gt;multiplier = 1&lt;/code&gt;, we extract letter &lt;code&gt;F&lt;/code&gt; and with &lt;code&gt;multiplier = 2&lt;/code&gt; we extract &lt;code&gt;D&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;To find which multiplier we need, a good and easy way is to place our cursor in one letter, check the Column number in the bottom left of Sublime Text and divide this number by the length (here 13). The integer value will be the multiplier.&lt;/p&gt;
-&lt;p&gt;Once we created all patterns with this kind of code, we can begin the character recognition. We use this little python code. 
-    :::python
-    '''
-    Pod for Team Fourchette Bombe
-    '''
-    import codecs
-    f = codecs.open('pain.txt',encoding='utf-8')
-    flines = f.readlines()&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chars = (&amp;#39;0&amp;#39;,&amp;#39;1&amp;#39;,&amp;#39;2&amp;#39;,&amp;#39;3&amp;#39;,&amp;#39;4&amp;#39;,&amp;#39;5&amp;#39;,&amp;#39;6&amp;#39;,&amp;#39;7&amp;#39;,&amp;#39;8&amp;#39;,&amp;#39;9&amp;#39;,&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;,&amp;#39;d&amp;#39;,&amp;#39;e&amp;#39;,&amp;#39;f&amp;#39;)
+&lt;p&gt;Once we created all patterns with this kind of code, we can begin the character recognition. We use this little python code. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;Pod for Team Fourchette Bombe&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;codecs&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;codecs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pain.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;flines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-solve = &amp;#39;&amp;#39;
+&lt;span class="n"&gt;chars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;4&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;6&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;7&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;f&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-for i in range(0,len(flines[0]),13):
-    for j in range(0,len(chars)):
-        fp = codecs.open(&amp;#39;./painPatterns/&amp;#39;+chars[j], encoding=&amp;#39;utf-8&amp;#39;)
-        lines = fp.readlines() 
-        Found = True
-        for l in range(0,11):
-            for c in range(0,13):
-                if (flines[l][i+c] != lines[l][c]):
-                    Found = False;
-                    break;
+&lt;span class="n"&gt;solve&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
 
-            if not Found:
-                break;
-        if Found:
-            solve += chars[j];
-            break;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chars&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="n"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;codecs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;./painPatterns/&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;chars&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;lines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+        &lt;span class="n"&gt;Found&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
+                    &lt;span class="n"&gt;Found&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-endf = open(&amp;#39;solve&amp;#39;,&amp;#39;w&amp;#39;);
-endf.write(solve.decode(&amp;#39;hex&amp;#39;));
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;Found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;Found&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;solve&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;chars&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;endf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;solve&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;endf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;solve&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -75,8 +72,8 @@ endf.write(solve.decode(&amp;#39;hex&amp;#39;));
 &lt;p&gt;&lt;strong&gt;Flag&lt;/strong&gt; : h4ck1t{1_LOV3_3P1C_F0NT$}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Writeup 1magePr1son</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-writeup-1magepr1son.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-writeup-1magepr1son.html</id><summary type="html">&lt;h3&gt;Hackit 2016 Quals - 1magePr1son&lt;/h3&gt;
 &lt;h3&gt;Stegano - 150 pts&lt;/h3&gt;
 &lt;p&gt;Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
- And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
- h4ck1t{str(flag).upper()}&lt;/p&gt;
+And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
+h4ck1t{str(flag).upper()}&lt;/p&gt;
 &lt;p&gt;In this challenge, we're given a picture which is a beautiful wallpaper&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Space Wallpaper" src="../../images/1magePr1son/planet.png" /&gt;&lt;/p&gt;
 &lt;p&gt;If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents&lt;/p&gt;
