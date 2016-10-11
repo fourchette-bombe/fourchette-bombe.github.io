@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://blog.fourchette-bombe.com/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://blog.fourchette-bombe.com/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://blog.fourchette-bombe.com/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://blog.fourchette-bombe.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Fourchette Bombe Atom">
+
+
+    <link rel="shortcut icon" href="http://blog.fourchette-bombe.com/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://blog.fourchette-bombe.com/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Pod" />
+<meta name="description" content="Crypto - 250 pts Times are getting harder and harder for Gen.Tompson. I`m soldier Alderson and some time ago we got this Rijndael cipher: \xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07 ..." />
+<meta name="keywords" content="ctf, writeup, stegano">
+<meta property="og:site_name" content="Fourchette Bombe"/>
+<meta property="og:title" content="Hackit 2016 Quals - Handmade encryption standard"/>
+<meta property="og:description" content="Crypto - 250 pts Times are getting harder and harder for Gen.Tompson. I`m soldier Alderson and some time ago we got this Rijndael cipher: \xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07 ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-handmade-encryption-standard.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-10-04 10:10:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://blog.fourchette-bombe.com/author/pod.html">
+<meta property="article:section" content="writeups"/>
+<meta property="article:tag" content="ctf"/>
+<meta property="article:tag" content="writeup"/>
+<meta property="article:tag" content="stegano"/>
+<meta property="og:image" content="http://blog.fourchette-bombe.com/images/logo.png">
+
+  <title>Fourchette Bombe &ndash; Hackit 2016 Quals - Handmade encryption standard</title>
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://blog.fourchette-bombe.com">
+        <img src="http://blog.fourchette-bombe.com/images/logo.png" alt="Fourchette Bombe" title="Fourchette Bombe">
+      </a>
+      <h1><a href="http://blog.fourchette-bombe.com">Fourchette Bombe</a></h1>
+
+<p>Keep Calme Like A Bombe</p>
+      <nav>
+        <ul class="list">
+          <li><a href="http://blog.fourchette-bombe.com/pages/about.html#about">About</a></li>
+          <li><a href="http://blog.fourchette-bombe.com/pages/disclaimer.html#disclaimer">Disclaimer</a></li>
+
+          <li><a href="https://ctftime.org/team/1833" target="_blank">CTF Team</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="https://twitter.com/0xboogy" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/boogy" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-rss" href="/feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+  </aside>
+  <main>
+    <nav>
+      <a href="http://blog.fourchette-bombe.com">Home</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/archives.html">Archives</a>
+      <a href="/tags.html">Tags</a>
+      <a href="/pages/disclaimer.html">Disclaimer</a>
+      <a href="/pages/about.html">About</a>
+
+      <a href="http://blog.fourchette-bombe.com/feeds/all.atom.xml">Atom</a>
+
+    </nav>
+
+<article>
+  <header>
+    <h1 id="hackit-2016-quals-handmade-encryption-standard">Hackit 2016 Quals - Handmade encryption standard</h1>
+    <p>
+      Posted on Tue 04 October 2016 in <a href="http://blog.fourchette-bombe.com/category/writeups.html">writeups</a>
+
+    </p>
+  </header>
+  <div>
+    <h3>Crypto - 250 pts</h3>
+<div class="highlight"><pre><span></span>Times are getting harder and harder for Gen.Tompson.
+I`m soldier Alderson and some time ago we got this Rijndael cipher: \xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07\x1a\x61\xf2\x81\x0f\xfe\xc6\x6e\x36\xc5\x7b\xd6\x9c\xca\x05\x93\x76\x43\xa9\x08\x45\xa4\x8f\x88\xb9\x31\x7e\x22\x7f\x00\x00\x48\xb7\x31\x7e\x22\x7f\x00\x00
+And we have even intercepted its key(!):
+21449030350486006488383082093598
+But the problem is that decryption operation have failed somehow =(
+Our math-team found out that standart algorithm was modified by cryptographer - he decided to use his own substitution-box instead of default!
+Math team also found out that modification was pretty simple - cryptographer just exchanged 3 elements of that substitution-box between them. But which ones?..Help our math-team to find this out ;)
+P.S General Tompson can`t talk right now.
+</pre></div>
+
+
+<p>In this challenge, they talk about the Rijndael Cipher which is the algorithm used by the <a href="https://fr.wikipedia.org/wiki/Advanced_Encryption_Standard">AES Standard</a>. During this algorithm, a "box" of 256 bytes is used and called S-Box (For Substitution box).</p>
+<p>After a lot of research and failed attemps, here are the elements we must know and remember before entering the channel :
+- S-Box is used for encryption and S-Box-Inverse is used for decryption.
+- S-Box is used for the Key Expansion part. Therefore it is used both for Encryption and Decryption.</p>
+<p>Therefore here, as far as we need to decrypt, we'll need to change S-box aswell as S-Box-Inv accordingly.</p>
+<p>Now few mathematics about the permutations problem. We need to switch 3 elements among them. So we first need to fetch every group of 3 distinct element between 1 and 256 without considering the place in the group. This is called a <a href="https://en.wikipedia.org/wiki/Combination">combination</a>.
+Once we've got a group like this one : <code>(a,b,c)</code> we got only 2 permutations which changes all three elements :
+- <code>(b,c,a)</code>
+- <code>(c,a,b)</code></p>
+<p>Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : <img alt="2*((256)!/((256-3)!*3!))" src="equation.gif" /><code>= 5 527 040</code> possibilities which is by far vulnerable to bruteforcing.</p>
+<p>So in our code, we first need to generate all permutations with this :</p>
+<div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">bitmask</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// K leading 1&#39;s</span>
+<span class="n">bitmask</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// N-K trailing 0&#39;s</span>
+<span class="kt">uint8_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">aSet</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">bSet</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">cSet</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="c1">//Here we define the three elements of the permutations </span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="c1">// [0..N-1] integers</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">bitmask</span><span class="p">[</span><span class="n">k</span><span class="p">]){</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">aSet</span><span class="p">){</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span> <span class="n">k</span><span class="p">;</span>
+                <span class="n">aSet</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">bSet</span><span class="p">){</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span> <span class="n">k</span><span class="p">;</span>
+                <span class="n">bSet</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cSet</span><span class="p">){</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span> <span class="n">k</span><span class="p">;</span>
+                <span class="n">cSet</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Error&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">prev_permutation</span><span class="p">(</span><span class="n">bitmask</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">bitmask</span><span class="p">.</span><span class="n">end</span><span class="p">()));</span>
+</pre></div>
+
+
+<p>We'll also need to get an aes256 implementation (The key is written in ascii. So this is 32 bytes). I used this <a href="http://literatecode.com/aes256">one</a>. In this file, we just need to do few changes.
+We need to remove the const before the declaration of SBox and SBoxInv and then add these 2 functions :</p>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">aes256_setInvBox</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">box</span><span class="p">){</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">sboxinv</span><span class="p">,</span><span class="n">box</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">aes256_setBox</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">box</span><span class="p">){</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">sbox</span><span class="p">,</span><span class="n">box</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Once we did this, we only need to change the SBox and the SBoxInv accordingly. For example, if our group is <code>(a,b,c)</code> and we want to modify it to <code>(b,c,a)</code> we have this code :</p>
+<div class="highlight"><pre><span></span><span class="kt">uint8_t</span> <span class="n">save</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span>
+<span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">save</span><span class="p">,</span><span class="n">newBox</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">a</span><span class="p">,</span><span class="n">newBox</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//Set SBox[b] in SBox[a]</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//Set SBoxInv(b) to point to the &quot;array address&quot; of SBox[a] which is a.</span>
+<span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="n">newBox</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">b</span><span class="p">],</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="o">&amp;</span><span class="n">save</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">c</span><span class="p">],</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+
+
+<p>With this, we just launch the decryption and check if we have the flag.</p>
+<p>Final code :</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Pod for Team Fourchette-Bombe</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;aes256.h&quot;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">hasFlag</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">buf</span><span class="p">){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">bufString</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="n">buf</span><span class="o">+</span><span class="mi">64</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bufString</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;h4ck1t&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">aes256_context</span> <span class="n">ctx</span><span class="p">;</span>
+    <span class="kt">uint8_t</span> <span class="n">key</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;2&#39;</span><span class="p">,</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;5&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;6&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;6&#39;</span><span class="p">,</span> <span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;2&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span> <span class="sc">&#39;5&#39;</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">};</span>
+    <span class="k">const</span> <span class="kt">uint8_t</span> <span class="n">saveBuf</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0xa2</span><span class="p">,</span><span class="mh">0xc5</span><span class="p">,</span><span class="mh">0xe7</span><span class="p">,</span><span class="mh">0xcc</span><span class="p">,</span><span class="mh">0xe4</span><span class="p">,</span><span class="mh">0xa9</span><span class="p">,</span><span class="mh">0xb6</span><span class="p">,</span><span class="mh">0x41</span><span class="p">,</span><span class="mh">0x0b</span><span class="p">,</span><span class="mh">0x77</span><span class="p">,</span><span class="mh">0x92</span><span class="p">,</span><span class="mh">0x54</span><span class="p">,</span><span class="mh">0x78</span><span class="p">,</span><span class="mh">0xdb</span><span class="p">,</span><span class="mh">0xed</span><span class="p">,</span><span class="mh">0xab</span><span class="p">,</span><span class="mh">0xe0</span><span class="p">,</span><span class="mh">0x1d</span><span class="p">,</span><span class="mh">0xac</span><span class="p">,</span><span class="mh">0x83</span><span class="p">,</span><span class="mh">0x2e</span><span class="p">,</span><span class="mh">0xe2</span><span class="p">,</span><span class="mh">0x6b</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x1a</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0xf2</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0x0f</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0xc6</span><span class="p">,</span><span class="mh">0x6e</span><span class="p">,</span><span class="mh">0x36</span><span class="p">,</span><span class="mh">0xc5</span><span class="p">,</span><span class="mh">0x7b</span><span class="p">,</span><span class="mh">0xd6</span><span class="p">,</span><span class="mh">0x9c</span><span class="p">,</span><span class="mh">0xca</span><span class="p">,</span><span class="mh">0x05</span><span class="p">,</span><span class="mh">0x93</span><span class="p">,</span><span class="mh">0x76</span><span class="p">,</span><span class="mh">0x43</span><span class="p">,</span><span class="mh">0xa9</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x45</span><span class="p">,</span><span class="mh">0xa4</span><span class="p">,</span><span class="mh">0x8f</span><span class="p">,</span><span class="mh">0x88</span><span class="p">,</span><span class="mh">0xb9</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x7e</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x48</span><span class="p">,</span><span class="mh">0xb7</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mh">0x7e</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">};</span>
+    <span class="kt">uint8_t</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="c1">//Values to generate the permutations</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+    <span class="k">const</span> <span class="kt">uint8_t</span> <span class="n">saveBox</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="mh">0x63</span><span class="p">,</span> <span class="mh">0x7c</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x7b</span><span class="p">,</span> <span class="mh">0xf2</span><span class="p">,</span> <span class="mh">0x6b</span><span class="p">,</span> <span class="mh">0x6f</span><span class="p">,</span> <span class="mh">0xc5</span><span class="p">,</span>
+        <span class="mh">0x30</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x67</span><span class="p">,</span> <span class="mh">0x2b</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0xd7</span><span class="p">,</span> <span class="mh">0xab</span><span class="p">,</span> <span class="mh">0x76</span><span class="p">,</span>
+        <span class="mh">0xca</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xc9</span><span class="p">,</span> <span class="mh">0x7d</span><span class="p">,</span> <span class="mh">0xfa</span><span class="p">,</span> <span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x47</span><span class="p">,</span> <span class="mh">0xf0</span><span class="p">,</span>
+        <span class="mh">0xad</span><span class="p">,</span> <span class="mh">0xd4</span><span class="p">,</span> <span class="mh">0xa2</span><span class="p">,</span> <span class="mh">0xaf</span><span class="p">,</span> <span class="mh">0x9c</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0x72</span><span class="p">,</span> <span class="mh">0xc0</span><span class="p">,</span>
+        <span class="mh">0xb7</span><span class="p">,</span> <span class="mh">0xfd</span><span class="p">,</span> <span class="mh">0x93</span><span class="p">,</span> <span class="mh">0x26</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x3f</span><span class="p">,</span> <span class="mh">0xf7</span><span class="p">,</span> <span class="mh">0xcc</span><span class="p">,</span>
+        <span class="mh">0x34</span><span class="p">,</span> <span class="mh">0xa5</span><span class="p">,</span> <span class="mh">0xe5</span><span class="p">,</span> <span class="mh">0xf1</span><span class="p">,</span> <span class="mh">0x71</span><span class="p">,</span> <span class="mh">0xd8</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0x15</span><span class="p">,</span>
+        <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0xc7</span><span class="p">,</span> <span class="mh">0x23</span><span class="p">,</span> <span class="mh">0xc3</span><span class="p">,</span> <span class="mh">0x18</span><span class="p">,</span> <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x9a</span><span class="p">,</span>
+        <span class="mh">0x07</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xe2</span><span class="p">,</span> <span class="mh">0xeb</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0xb2</span><span class="p">,</span> <span class="mh">0x75</span><span class="p">,</span>
+        <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x83</span><span class="p">,</span> <span class="mh">0x2c</span><span class="p">,</span> <span class="mh">0x1a</span><span class="p">,</span> <span class="mh">0x1b</span><span class="p">,</span> <span class="mh">0x6e</span><span class="p">,</span> <span class="mh">0x5a</span><span class="p">,</span> <span class="mh">0xa0</span><span class="p">,</span>
+        <span class="mh">0x52</span><span class="p">,</span> <span class="mh">0x3b</span><span class="p">,</span> <span class="mh">0xd6</span><span class="p">,</span> <span class="mh">0xb3</span><span class="p">,</span> <span class="mh">0x29</span><span class="p">,</span> <span class="mh">0xe3</span><span class="p">,</span> <span class="mh">0x2f</span><span class="p">,</span> <span class="mh">0x84</span><span class="p">,</span>
+        <span class="mh">0x53</span><span class="p">,</span> <span class="mh">0xd1</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xed</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0xfc</span><span class="p">,</span> <span class="mh">0xb1</span><span class="p">,</span> <span class="mh">0x5b</span><span class="p">,</span>
+        <span class="mh">0x6a</span><span class="p">,</span> <span class="mh">0xcb</span><span class="p">,</span> <span class="mh">0xbe</span><span class="p">,</span> <span class="mh">0x39</span><span class="p">,</span> <span class="mh">0x4a</span><span class="p">,</span> <span class="mh">0x4c</span><span class="p">,</span> <span class="mh">0x58</span><span class="p">,</span> <span class="mh">0xcf</span><span class="p">,</span>
+        <span class="mh">0xd0</span><span class="p">,</span> <span class="mh">0xef</span><span class="p">,</span> <span class="mh">0xaa</span><span class="p">,</span> <span class="mh">0xfb</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">,</span> <span class="mh">0x4d</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">,</span> <span class="mh">0x85</span><span class="p">,</span>
+        <span class="mh">0x45</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0x3c</span><span class="p">,</span> <span class="mh">0x9f</span><span class="p">,</span> <span class="mh">0xa8</span><span class="p">,</span>
+        <span class="mh">0x51</span><span class="p">,</span> <span class="mh">0xa3</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0x8f</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x9d</span><span class="p">,</span> <span class="mh">0x38</span><span class="p">,</span> <span class="mh">0xf5</span><span class="p">,</span>
+        <span class="mh">0xbc</span><span class="p">,</span> <span class="mh">0xb6</span><span class="p">,</span> <span class="mh">0xda</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xf3</span><span class="p">,</span> <span class="mh">0xd2</span><span class="p">,</span>
+        <span class="mh">0xcd</span><span class="p">,</span> <span class="mh">0x0c</span><span class="p">,</span> <span class="mh">0x13</span><span class="p">,</span> <span class="mh">0xec</span><span class="p">,</span> <span class="mh">0x5f</span><span class="p">,</span> <span class="mh">0x97</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x17</span><span class="p">,</span>
+        <span class="mh">0xc4</span><span class="p">,</span> <span class="mh">0xa7</span><span class="p">,</span> <span class="mh">0x7e</span><span class="p">,</span> <span class="mh">0x3d</span><span class="p">,</span> <span class="mh">0x64</span><span class="p">,</span> <span class="mh">0x5d</span><span class="p">,</span> <span class="mh">0x19</span><span class="p">,</span> <span class="mh">0x73</span><span class="p">,</span>
+        <span class="mh">0x60</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0x4f</span><span class="p">,</span> <span class="mh">0xdc</span><span class="p">,</span> <span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x2a</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">,</span> <span class="mh">0x88</span><span class="p">,</span>
+        <span class="mh">0x46</span><span class="p">,</span> <span class="mh">0xee</span><span class="p">,</span> <span class="mh">0xb8</span><span class="p">,</span> <span class="mh">0x14</span><span class="p">,</span> <span class="mh">0xde</span><span class="p">,</span> <span class="mh">0x5e</span><span class="p">,</span> <span class="mh">0x0b</span><span class="p">,</span> <span class="mh">0xdb</span><span class="p">,</span>
+        <span class="mh">0xe0</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0x3a</span><span class="p">,</span> <span class="mh">0x0a</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0x5c</span><span class="p">,</span>
+        <span class="mh">0xc2</span><span class="p">,</span> <span class="mh">0xd3</span><span class="p">,</span> <span class="mh">0xac</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x91</span><span class="p">,</span> <span class="mh">0x95</span><span class="p">,</span> <span class="mh">0xe4</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span>
+        <span class="mh">0xe7</span><span class="p">,</span> <span class="mh">0xc8</span><span class="p">,</span> <span class="mh">0x37</span><span class="p">,</span> <span class="mh">0x6d</span><span class="p">,</span> <span class="mh">0x8d</span><span class="p">,</span> <span class="mh">0xd5</span><span class="p">,</span> <span class="mh">0x4e</span><span class="p">,</span> <span class="mh">0xa9</span><span class="p">,</span>
+        <span class="mh">0x6c</span><span class="p">,</span> <span class="mh">0x56</span><span class="p">,</span> <span class="mh">0xf4</span><span class="p">,</span> <span class="mh">0xea</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x7a</span><span class="p">,</span> <span class="mh">0xae</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span>
+        <span class="mh">0xba</span><span class="p">,</span> <span class="mh">0x78</span><span class="p">,</span> <span class="mh">0x25</span><span class="p">,</span> <span class="mh">0x2e</span><span class="p">,</span> <span class="mh">0x1c</span><span class="p">,</span> <span class="mh">0xa6</span><span class="p">,</span> <span class="mh">0xb4</span><span class="p">,</span> <span class="mh">0xc6</span><span class="p">,</span>
+        <span class="mh">0xe8</span><span class="p">,</span> <span class="mh">0xdd</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0x1f</span><span class="p">,</span> <span class="mh">0x4b</span><span class="p">,</span> <span class="mh">0xbd</span><span class="p">,</span> <span class="mh">0x8b</span><span class="p">,</span> <span class="mh">0x8a</span><span class="p">,</span>
+        <span class="mh">0x70</span><span class="p">,</span> <span class="mh">0x3e</span><span class="p">,</span> <span class="mh">0xb5</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0xf6</span><span class="p">,</span> <span class="mh">0x0e</span><span class="p">,</span>
+        <span class="mh">0x61</span><span class="p">,</span> <span class="mh">0x35</span><span class="p">,</span> <span class="mh">0x57</span><span class="p">,</span> <span class="mh">0xb9</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0xc1</span><span class="p">,</span> <span class="mh">0x1d</span><span class="p">,</span> <span class="mh">0x9e</span><span class="p">,</span>
+        <span class="mh">0xe1</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x98</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x69</span><span class="p">,</span> <span class="mh">0xd9</span><span class="p">,</span> <span class="mh">0x8e</span><span class="p">,</span> <span class="mh">0x94</span><span class="p">,</span>
+        <span class="mh">0x9b</span><span class="p">,</span> <span class="mh">0x1e</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span> <span class="mh">0xe9</span><span class="p">,</span> <span class="mh">0xce</span><span class="p">,</span> <span class="mh">0x55</span><span class="p">,</span> <span class="mh">0x28</span><span class="p">,</span> <span class="mh">0xdf</span><span class="p">,</span>
+        <span class="mh">0x8c</span><span class="p">,</span> <span class="mh">0xa1</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0x0d</span><span class="p">,</span> <span class="mh">0xbf</span><span class="p">,</span> <span class="mh">0xe6</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">,</span> <span class="mh">0x68</span><span class="p">,</span>
+        <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x2d</span><span class="p">,</span> <span class="mh">0x0f</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x54</span><span class="p">,</span> <span class="mh">0xbb</span><span class="p">,</span> <span class="mh">0x16</span>
+    <span class="p">};</span>
+    <span class="k">const</span> <span class="kt">uint8_t</span> <span class="n">saveBoxInv</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="mh">0x52</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x6a</span><span class="p">,</span> <span class="mh">0xd5</span><span class="p">,</span> <span class="mh">0x30</span><span class="p">,</span> <span class="mh">0x36</span><span class="p">,</span> <span class="mh">0xa5</span><span class="p">,</span> <span class="mh">0x38</span><span class="p">,</span>
+        <span class="mh">0xbf</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0xa3</span><span class="p">,</span> <span class="mh">0x9e</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xf3</span><span class="p">,</span> <span class="mh">0xd7</span><span class="p">,</span> <span class="mh">0xfb</span><span class="p">,</span>
+        <span class="mh">0x7c</span><span class="p">,</span> <span class="mh">0xe3</span><span class="p">,</span> <span class="mh">0x39</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0x9b</span><span class="p">,</span> <span class="mh">0x2f</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span>
+        <span class="mh">0x34</span><span class="p">,</span> <span class="mh">0x8e</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0xc4</span><span class="p">,</span> <span class="mh">0xde</span><span class="p">,</span> <span class="mh">0xe9</span><span class="p">,</span> <span class="mh">0xcb</span><span class="p">,</span>
+        <span class="mh">0x54</span><span class="p">,</span> <span class="mh">0x7b</span><span class="p">,</span> <span class="mh">0x94</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0xa6</span><span class="p">,</span> <span class="mh">0xc2</span><span class="p">,</span> <span class="mh">0x23</span><span class="p">,</span> <span class="mh">0x3d</span><span class="p">,</span>
+        <span class="mh">0xee</span><span class="p">,</span> <span class="mh">0x4c</span><span class="p">,</span> <span class="mh">0x95</span><span class="p">,</span> <span class="mh">0x0b</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">,</span> <span class="mh">0xfa</span><span class="p">,</span> <span class="mh">0xc3</span><span class="p">,</span> <span class="mh">0x4e</span><span class="p">,</span>
+        <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x2e</span><span class="p">,</span> <span class="mh">0xa1</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x28</span><span class="p">,</span> <span class="mh">0xd9</span><span class="p">,</span> <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0xb2</span><span class="p">,</span>
+        <span class="mh">0x76</span><span class="p">,</span> <span class="mh">0x5b</span><span class="p">,</span> <span class="mh">0xa2</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x6d</span><span class="p">,</span> <span class="mh">0x8b</span><span class="p">,</span> <span class="mh">0xd1</span><span class="p">,</span> <span class="mh">0x25</span><span class="p">,</span>
+        <span class="mh">0x72</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0xf6</span><span class="p">,</span> <span class="mh">0x64</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0x68</span><span class="p">,</span> <span class="mh">0x98</span><span class="p">,</span> <span class="mh">0x16</span><span class="p">,</span>
+        <span class="mh">0xd4</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0x5c</span><span class="p">,</span> <span class="mh">0xcc</span><span class="p">,</span> <span class="mh">0x5d</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0xb6</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span>
+        <span class="mh">0x6c</span><span class="p">,</span> <span class="mh">0x70</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0xfd</span><span class="p">,</span> <span class="mh">0xed</span><span class="p">,</span> <span class="mh">0xb9</span><span class="p">,</span> <span class="mh">0xda</span><span class="p">,</span>
+        <span class="mh">0x5e</span><span class="p">,</span> <span class="mh">0x15</span><span class="p">,</span> <span class="mh">0x46</span><span class="p">,</span> <span class="mh">0x57</span><span class="p">,</span> <span class="mh">0xa7</span><span class="p">,</span> <span class="mh">0x8d</span><span class="p">,</span> <span class="mh">0x9d</span><span class="p">,</span> <span class="mh">0x84</span><span class="p">,</span>
+        <span class="mh">0x90</span><span class="p">,</span> <span class="mh">0xd8</span><span class="p">,</span> <span class="mh">0xab</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x8c</span><span class="p">,</span> <span class="mh">0xbc</span><span class="p">,</span> <span class="mh">0xd3</span><span class="p">,</span> <span class="mh">0x0a</span><span class="p">,</span>
+        <span class="mh">0xf7</span><span class="p">,</span> <span class="mh">0xe4</span><span class="p">,</span> <span class="mh">0x58</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0xb8</span><span class="p">,</span> <span class="mh">0xb3</span><span class="p">,</span> <span class="mh">0x45</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span>
+        <span class="mh">0xd0</span><span class="p">,</span> <span class="mh">0x2c</span><span class="p">,</span> <span class="mh">0x1e</span><span class="p">,</span> <span class="mh">0x8f</span><span class="p">,</span> <span class="mh">0xca</span><span class="p">,</span> <span class="mh">0x3f</span><span class="p">,</span> <span class="mh">0x0f</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span>
+        <span class="mh">0xc1</span><span class="p">,</span> <span class="mh">0xaf</span><span class="p">,</span> <span class="mh">0xbd</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x13</span><span class="p">,</span> <span class="mh">0x8a</span><span class="p">,</span> <span class="mh">0x6b</span><span class="p">,</span>
+        <span class="mh">0x3a</span><span class="p">,</span> <span class="mh">0x91</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x4f</span><span class="p">,</span> <span class="mh">0x67</span><span class="p">,</span> <span class="mh">0xdc</span><span class="p">,</span> <span class="mh">0xea</span><span class="p">,</span>
+        <span class="mh">0x97</span><span class="p">,</span> <span class="mh">0xf2</span><span class="p">,</span> <span class="mh">0xcf</span><span class="p">,</span> <span class="mh">0xce</span><span class="p">,</span> <span class="mh">0xf0</span><span class="p">,</span> <span class="mh">0xb4</span><span class="p">,</span> <span class="mh">0xe6</span><span class="p">,</span> <span class="mh">0x73</span><span class="p">,</span>
+        <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0xac</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0x22</span><span class="p">,</span> <span class="mh">0xe7</span><span class="p">,</span> <span class="mh">0xad</span><span class="p">,</span> <span class="mh">0x35</span><span class="p">,</span> <span class="mh">0x85</span><span class="p">,</span>
+        <span class="mh">0xe2</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0x37</span><span class="p">,</span> <span class="mh">0xe8</span><span class="p">,</span> <span class="mh">0x1c</span><span class="p">,</span> <span class="mh">0x75</span><span class="p">,</span> <span class="mh">0xdf</span><span class="p">,</span> <span class="mh">0x6e</span><span class="p">,</span>
+        <span class="mh">0x47</span><span class="p">,</span> <span class="mh">0xf1</span><span class="p">,</span> <span class="mh">0x1a</span><span class="p">,</span> <span class="mh">0x71</span><span class="p">,</span> <span class="mh">0x1d</span><span class="p">,</span> <span class="mh">0x29</span><span class="p">,</span> <span class="mh">0xc5</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span>
+        <span class="mh">0x6f</span><span class="p">,</span> <span class="mh">0xb7</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x0e</span><span class="p">,</span> <span class="mh">0xaa</span><span class="p">,</span> <span class="mh">0x18</span><span class="p">,</span> <span class="mh">0xbe</span><span class="p">,</span> <span class="mh">0x1b</span><span class="p">,</span>
+        <span class="mh">0xfc</span><span class="p">,</span> <span class="mh">0x56</span><span class="p">,</span> <span class="mh">0x3e</span><span class="p">,</span> <span class="mh">0x4b</span><span class="p">,</span> <span class="mh">0xc6</span><span class="p">,</span> <span class="mh">0xd2</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span>
+        <span class="mh">0x9a</span><span class="p">,</span> <span class="mh">0xdb</span><span class="p">,</span> <span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0x78</span><span class="p">,</span> <span class="mh">0xcd</span><span class="p">,</span> <span class="mh">0x5a</span><span class="p">,</span> <span class="mh">0xf4</span><span class="p">,</span>
+        <span class="mh">0x1f</span><span class="p">,</span> <span class="mh">0xdd</span><span class="p">,</span> <span class="mh">0xa8</span><span class="p">,</span> <span class="mh">0x33</span><span class="p">,</span> <span class="mh">0x88</span><span class="p">,</span> <span class="mh">0x07</span><span class="p">,</span> <span class="mh">0xc7</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span>
+        <span class="mh">0xb1</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xec</span><span class="p">,</span> <span class="mh">0x5f</span><span class="p">,</span>
+        <span class="mh">0x60</span><span class="p">,</span> <span class="mh">0x51</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0xa9</span><span class="p">,</span> <span class="mh">0x19</span><span class="p">,</span> <span class="mh">0xb5</span><span class="p">,</span> <span class="mh">0x4a</span><span class="p">,</span> <span class="mh">0x0d</span><span class="p">,</span>
+        <span class="mh">0x2d</span><span class="p">,</span> <span class="mh">0xe5</span><span class="p">,</span> <span class="mh">0x7a</span><span class="p">,</span> <span class="mh">0x9f</span><span class="p">,</span> <span class="mh">0x93</span><span class="p">,</span> <span class="mh">0xc9</span><span class="p">,</span> <span class="mh">0x9c</span><span class="p">,</span> <span class="mh">0xef</span><span class="p">,</span>
+        <span class="mh">0xa0</span><span class="p">,</span> <span class="mh">0xe0</span><span class="p">,</span> <span class="mh">0x3b</span><span class="p">,</span> <span class="mh">0x4d</span><span class="p">,</span> <span class="mh">0xae</span><span class="p">,</span> <span class="mh">0x2a</span><span class="p">,</span> <span class="mh">0xf5</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span>
+        <span class="mh">0xc8</span><span class="p">,</span> <span class="mh">0xeb</span><span class="p">,</span> <span class="mh">0xbb</span><span class="p">,</span> <span class="mh">0x3c</span><span class="p">,</span> <span class="mh">0x83</span><span class="p">,</span> <span class="mh">0x53</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x61</span><span class="p">,</span>
+        <span class="mh">0x17</span><span class="p">,</span> <span class="mh">0x2b</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x7e</span><span class="p">,</span> <span class="mh">0xba</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xd6</span><span class="p">,</span> <span class="mh">0x26</span><span class="p">,</span>
+        <span class="mh">0xe1</span><span class="p">,</span> <span class="mh">0x69</span><span class="p">,</span> <span class="mh">0x14</span><span class="p">,</span> <span class="mh">0x63</span><span class="p">,</span> <span class="mh">0x55</span><span class="p">,</span> <span class="mh">0x21</span><span class="p">,</span> <span class="mh">0x0c</span><span class="p">,</span> <span class="mh">0x7d</span>
+    <span class="p">};</span>
+
+    <span class="c1">//Round number l. Why l ? I don&#39;t know and I don&#39;t really give a shit ! :D</span>
+    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">//The buffer used to store the current encryption / decryption state</span>
+    <span class="kt">uint8_t</span> <span class="n">buf</span><span class="p">[</span><span class="mi">65</span><span class="p">];</span>
+    <span class="c1">//The new boxes</span>
+    <span class="kt">uint8_t</span> <span class="n">newBox</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+    <span class="kt">uint8_t</span> <span class="n">newBoxinv</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+
+    <span class="n">memset</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
+
+    <span class="c1">//Generation permutations loop</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">bitmask</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// K leading 1&#39;s</span>
+    <span class="n">bitmask</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// N-K trailing 0&#39;s</span>
+    <span class="c1">//Declare permuation values</span>
+    <span class="kt">uint8_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span>
+
+        <span class="c1">//Increment round and reset indexes</span>
+        <span class="n">l</span><span class="o">++</span><span class="p">;</span>
+        <span class="c1">//Reset permutation values. </span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+
+
+        <span class="c1">//Set index to next permutation</span>
+        <span class="kt">bool</span> <span class="n">aSet</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">bSet</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">cSet</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="c1">// [0..N-1] integers</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">bitmask</span><span class="p">[</span><span class="n">k</span><span class="p">]){</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">aSet</span><span class="p">){</span>
+                    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span> <span class="n">k</span><span class="p">;</span>
+                    <span class="n">aSet</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">bSet</span><span class="p">){</span>
+                    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span> <span class="n">k</span><span class="p">;</span>
+                    <span class="n">bSet</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cSet</span><span class="p">){</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span> <span class="n">k</span><span class="p">;</span>
+                    <span class="n">cSet</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span><span class="p">{</span>
+                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Error&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">//Reset buffer and box</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="n">saveBuf</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="p">,</span><span class="n">saveBox</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">saveBox</span><span class="p">));</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBoxinv</span><span class="p">,</span><span class="n">saveBoxInv</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">saveBoxInv</span><span class="p">));</span>
+
+        <span class="c1">//First permutation</span>
+        <span class="kt">uint8_t</span> <span class="n">save</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span>
+        <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">save</span><span class="p">,</span><span class="n">newBox</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">a</span><span class="p">,</span><span class="n">newBox</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="n">newBox</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">b</span><span class="p">],</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="o">&amp;</span><span class="n">save</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">c</span><span class="p">],</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="n">aes256_setBox</span><span class="p">(</span><span class="n">newBox</span><span class="p">);</span>
+        <span class="n">aes256_setInvBox</span><span class="p">(</span><span class="n">newBoxinv</span><span class="p">);</span>
+
+        <span class="c1">//4 decryption because buffer is 64 bytes long</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">offset</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span><span class="n">offset</span><span class="o">+=</span><span class="mi">16</span><span class="p">){</span>
+            <span class="n">aes256_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+            <span class="n">aes256_decrypt_ecb</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">,</span> <span class="n">buf</span><span class="o">+</span><span class="n">offset</span><span class="p">);</span>
+            <span class="n">aes256_done</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">hasFlag</span><span class="p">(</span><span class="n">buf</span><span class="p">)){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">buf</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+
+
+        <span class="c1">//2nd permutation, We reset the buffers</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="n">saveBuf</span><span class="p">,</span><span class="mi">16</span><span class="p">);</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="p">,</span><span class="n">saveBox</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBoxinv</span><span class="p">,</span><span class="n">saveBoxInv</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+
+        <span class="c1">//Second permutation</span>
+        <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">save</span><span class="p">,</span><span class="n">newBox</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">a</span><span class="p">,</span><span class="n">newBox</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">c</span><span class="p">,</span><span class="n">newBox</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">c</span><span class="p">],</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memcpy</span><span class="p">(</span><span class="n">newBox</span><span class="o">+</span><span class="n">b</span><span class="p">,</span><span class="o">&amp;</span><span class="n">save</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">newBoxinv</span><span class="o">+</span><span class="n">newBox</span><span class="p">[</span><span class="n">b</span><span class="p">],</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="n">aes256_setBox</span><span class="p">(</span><span class="n">newBox</span><span class="p">);</span>
+        <span class="n">aes256_setInvBox</span><span class="p">(</span><span class="n">newBoxinv</span><span class="p">);</span>
+
+        <span class="c1">//4 decryption because buffer is 64 bytes long</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">offset</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">offset</span><span class="o">+=</span><span class="mi">16</span><span class="p">){</span>
+            <span class="n">aes256_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+            <span class="n">aes256_decrypt_ecb</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">,</span> <span class="n">buf</span><span class="o">+</span><span class="n">offset</span><span class="p">);</span>
+            <span class="n">aes256_done</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">hasFlag</span><span class="p">(</span><span class="n">buf</span><span class="p">)){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">buf</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="o">%</span><span class="mi">100000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">prev_permutation</span><span class="p">(</span><span class="n">bitmask</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">bitmask</span><span class="p">.</span><span class="n">end</span><span class="p">()));</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Running this programm is very quick compared to python code. It does about 20 000 permutations per second, we get the result in less than 5 minutes showing us the flag : <code>h4ck1t{50M30N3_KN0VV5_cRyPto_N0T_34D}</code></p>
+<p>This program could still be improved for sure, because there's some repeating code in here :)</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://blog.fourchette-bombe.com/tag/ctf.html">ctf</a>
+      <a href="http://blog.fourchette-bombe.com/tag/writeup.html">writeup</a>
+      <a href="http://blog.fourchette-bombe.com/tag/stegano.html">stegano</a>
+    </p>
+  </div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'http-blog-fourchette-bombe-com';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view comments.
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Fourchette-bombe 2016</p>
+<p>Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Fourchette Bombe ",
+  "url" : "http://blog.fourchette-bombe.com",
+  "image": "http://blog.fourchette-bombe.com/images/logo.png",
+  "description": "Subtitle"
+}
+</script>
+</body>
+</html>
