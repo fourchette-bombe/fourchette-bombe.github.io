@@ -380,7 +380,7 @@ We need to remove the const before the declaration of SBox and SBoxInv and then 
  h4ck1t{str(flag).upper()}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In this challenge, we're given a picture which is a beautiful wallpaper&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Space Wallpaper" src="https://fourchette-bombe.github.io/images/1magePr1son/planet.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Space Wallpaper" height="36px" src="https://fourchette-bombe.github.io/images/1magePr1son/planet.png" width="36px" /&gt;&lt;/p&gt;
 &lt;p&gt;If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Zoom on the wallpaper" src="https://fourchette-bombe.github.io/images/1magePr1son/planet_zoom.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Theses pixels are placed every 25 pixels (24 "normal" pixels between each "abnormal" pixel)&lt;/p&gt;
