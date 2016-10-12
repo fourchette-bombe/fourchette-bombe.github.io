@@ -396,8 +396,8 @@ We need to remove the const before the declaration of SBox and SBoxInv and then 
 &lt;p&gt;&lt;strong&gt;Flag&lt;/strong&gt; : h4ck1t{1_LOV3_3P1C_F0NT$}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Writeup 1magePr1son</title><link href="https://fourchette-bombe.github.io/2016/04/hackit-2016-quals-writeup-1magepr1son.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:fourchette-bombe.github.io,2016-10-04:2016/04/hackit-2016-quals-writeup-1magepr1son.html</id><summary type="html">&lt;h4&gt;Stegano - 150 pts&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
- And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
- h4ck1t{str(flag).upper()}&lt;/li&gt;
+ And some information has &lt;code&gt;https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen&lt;/code&gt; already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
+ &lt;code&gt;h4ck1t{str(flag).upper()}&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In this challenge, we're given a picture which is a beautiful wallpaper&lt;/p&gt;
 &lt;p&gt;-&amp;gt;&lt;img alt="Space Wallpaper" height="360px" src="https://fourchette-bombe.github.io/images/1magePr1son/planet.png" width="360px" /&gt;&amp;lt;-&lt;/p&gt;
