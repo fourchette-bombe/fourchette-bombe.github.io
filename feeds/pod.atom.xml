@@ -380,9 +380,9 @@ We need to remove the const before the declaration of SBox and SBoxInv and then 
  h4ck1t{str(flag).upper()}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In this challenge, we're given a picture which is a beautiful wallpaper&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Space Wallpaper" height="360px" src="https://fourchette-bombe.github.io/images/1magePr1son/planet.png" width="360px" /&gt;&lt;/p&gt;
+&lt;p&gt;-&amp;gt; &lt;img alt="Space Wallpaper" height="360px" src="https://fourchette-bombe.github.io/images/1magePr1son/planet.png" width="360px" /&gt; &amp;lt;-&lt;/p&gt;
 &lt;p&gt;If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Zoom on the wallpaper" height="360px" src="https://fourchette-bombe.github.io/images/1magePr1son/planet_zoom.png" width="360px" /&gt;&lt;/p&gt;
+&lt;p&gt;-&amp;gt; &lt;img alt="Zoom on the wallpaper" height="360px" src="https://fourchette-bombe.github.io/images/1magePr1son/planet_zoom.png" width="360px" /&gt; &amp;lt;-&lt;/p&gt;
 &lt;p&gt;Theses pixels are placed every 25 pixels (24 "normal" pixels between each "abnormal" pixel)&lt;/p&gt;
 &lt;p&gt;So we try to create an image with only theses pixels. We got this tiny python code :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
