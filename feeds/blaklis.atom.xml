@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Fourchette Bombe</title><link>https://fourchette-bombe.github.io/</link><description>Keep Calme Like A Bombe</description><lastBuildDate>Tue, 04 Oct 2016 10:30:00 +0200</lastBuildDate><item><title>HITCON CTF 2016 Quals Angry Seam Writeup</title><link>https://fourchette-bombe.github.io/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</link><description>&lt;h4&gt;Web (500 pts)&lt;/h4&gt;
+&lt;p&gt;The first page we can see is a login page. Hanging around a little, we can list a few interesting pages :
+ - The css.seam page take a filename as parameter.
+ - The logout button take a parameter that corresponds to "view:object.method" format.
+ - The report.seam page permits to send a URL to the administrator, but only URL that is intern to the application.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="https://fourchette-bombe.github.io/images/hitcon_angry_eam/login.png" /&gt;&lt;/p&gt;
+&lt;p&gt;With the css.seam page, we can list directories and files at the root of the application :&lt;/p&gt;
+&lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="https://fourchette-bombe.github.io/images/hitcon_angry_eam/directorylisting.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Reading the WEB-INF/pages.xml, we can view that there is a flag.xhtml, and we can deduce there is a flag.seam too. However, we saw that we must be admin to access it. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://52.198.197.227:8080/angryseam/css.seam?location&lt;span class="o"&gt;=&lt;/span&gt;../../../WEB-INF/pages.xml
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="N|Solid" src="https://fourchette-bombe.github.io/images/hitcon_angry_eam/pagesxml.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The first thing I tried, with little hope, was to play with the session. &lt;strong&gt;Logged in as lambda user&lt;/strong&gt;, I tried to go on register.seam and register with "admin" username.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="https://fourchette-bombe.github.io/images/hitcon_angry_eam/registerAdmin.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Error message, the user is existing. But... it changed my session, and I'm logged in as admin now! I can browse the flag.seam as admin, and tada!, the flag.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="https://fourchette-bombe.github.io/images/hitcon_angry_eam/flag.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm pretty sure this wasn't the intended way to solve this. But... I think it was the easiest way to do it! :)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Blaklis from Fourchette-Bombe&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Blaklis</dc:creator><pubDate>Tue, 04 Oct 2016 10:30:00 +0200</pubDate><guid isPermaLink="false">tag:fourchette-bombe.github.io,2016-10-04:2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</guid><category>ctf</category><category>writeup</category><category>PPC</category></item></channel></rss>
