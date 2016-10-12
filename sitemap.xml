@@ -4,119 +4,119 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>http://blog.fourchette-bombe.com/</loc>
-<lastmod>2016-10-11T16:59:32-00:00</lastmod>
+<loc>http://fourchette-bombe.github.io/</loc>
+<lastmod>2016-10-12T08:42:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/archives.html</loc>
-<lastmod>2016-10-11T16:59:32-00:00</lastmod>
+<loc>http://fourchette-bombe.github.io/archives.html</loc>
+<lastmod>2016-10-12T08:42:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/tags.html</loc>
-<lastmod>2016-10-11T16:59:32-00:00</lastmod>
+<loc>http://fourchette-bombe.github.io/tags.html</loc>
+<lastmod>2016-10-12T08:42:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/categories.html</loc>
-<lastmod>2016-10-11T16:59:32-00:00</lastmod>
+<loc>http://fourchette-bombe.github.io/categories.html</loc>
+<lastmod>2016-10-12T08:42:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/pages/about.html</loc>
-<lastmod>2016-10-11T16:59:32-00:00</lastmod>
+<loc>http://fourchette-bombe.github.io/pages/about.html</loc>
+<lastmod>2016-10-12T08:42:37-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/pages/disclaimer.html</loc>
-<lastmod>2016-10-11T16:59:32-00:00</lastmod>
+<loc>http://fourchette-bombe.github.io/pages/disclaimer.html</loc>
+<lastmod>2016-10-12T08:42:37-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</loc>
+<loc>http://fourchette-bombe.github.io/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</loc>
 <lastmod>2016-10-04T10:30:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-handmade-encryption-standard.html</loc>
+<loc>http://fourchette-bombe.github.io/2016/04/hackit-2016-quals-handmade-encryption-standard.html</loc>
 <lastmod>2016-10-04T10:20:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html</loc>
+<loc>http://fourchette-bombe.github.io/2016/04/hackit-2016-quals-electronicon.html</loc>
 <lastmod>2016-10-04T10:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-writeup-1magepr1son.html</loc>
+<loc>http://fourchette-bombe.github.io/2016/04/hackit-2016-quals-writeup-1magepr1son.html</loc>
 <lastmod>2016-10-04T10:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/category/writeups.html</loc>
+<loc>http://fourchette-bombe.github.io/category/writeups.html</loc>
 <lastmod>2016-10-04T10:30:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/tag/ppc.html</loc>
+<loc>http://fourchette-bombe.github.io/tag/ppc.html</loc>
 <lastmod>2016-10-04T10:30:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/tag/writeup.html</loc>
+<loc>http://fourchette-bombe.github.io/tag/writeup.html</loc>
 <lastmod>2016-10-04T10:30:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/tag/ctf.html</loc>
+<loc>http://fourchette-bombe.github.io/tag/ctf.html</loc>
 <lastmod>2016-10-04T10:30:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/tag/stegano.html</loc>
+<loc>http://fourchette-bombe.github.io/tag/stegano.html</loc>
 <lastmod>2016-10-04T10:20:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/author/blaklis.html</loc>
+<loc>http://fourchette-bombe.github.io/author/blaklis.html</loc>
 <lastmod>2016-10-04T10:30:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>
 </url>
 
 <url>
-<loc>http://blog.fourchette-bombe.com/author/pod.html</loc>
+<loc>http://fourchette-bombe.github.io/author/pod.html</loc>
 <lastmod>2016-10-04T10:20:00+00:30</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.6</priority>

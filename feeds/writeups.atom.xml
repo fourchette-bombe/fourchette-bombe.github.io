@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://blog.fourchette-bombe.com/" rel="alternate"></link><link href="http://blog.fourchette-bombe.com/feeds/writeups.atom.xml" rel="self"></link><id>http://blog.fourchette-bombe.com/</id><updated>2016-10-04T10:30:00+02:00</updated><entry><title>HITCON CTF 2016 Quals Angry Seam Writeup</title><link href="http://blog.fourchette-bombe.com/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html" rel="alternate"></link><published>2016-10-04T10:30:00+02:00</published><updated>2016-10-04T10:30:00+02:00</updated><author><name>Blaklis</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</id><summary type="html">&lt;h4&gt;Web (500 pts)&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Fourchette Bombe</title><link href="http://fourchette-bombe.github.io/" rel="alternate"></link><link href="http://fourchette-bombe.github.io/feeds/writeups.atom.xml" rel="self"></link><id>http://fourchette-bombe.github.io/</id><updated>2016-10-04T10:30:00+02:00</updated><entry><title>HITCON CTF 2016 Quals Angry Seam Writeup</title><link href="http://fourchette-bombe.github.io/2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html" rel="alternate"></link><published>2016-10-04T10:30:00+02:00</published><updated>2016-10-04T10:30:00+02:00</updated><author><name>Blaklis</name></author><id>tag:fourchette-bombe.github.io,2016-10-04:2016/04/hitcon-ctf-2016-quals-angry-seam-writeup.html</id><summary type="html">&lt;h4&gt;Web (500 pts)&lt;/h4&gt;
 &lt;p&gt;The first page we can see is a login page. Hanging around a little, we can list a few interesting pages :
  - The css.seam page take a filename as parameter.
  - The logout button take a parameter that corresponds to "view:object.method" format.
  - The report.seam page permits to send a URL to the administrator, but only URL that is intern to the application.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/login.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://fourchette-bombe.github.io/images/hitcon_angry_eam/login.png" /&gt;&lt;/p&gt;
 &lt;p&gt;With the css.seam page, we can list directories and files at the root of the application :&lt;/p&gt;
 &lt;p&gt;http://52.198.197.227:8080/angryseam/css.seam?location=../../../&lt;/p&gt;
-&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/directorylisting.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://fourchette-bombe.github.io/images/hitcon_angry_eam/directorylisting.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Reading the WEB-INF/pages.xml, we can view that there is a flag.xhtml, and we can deduce there is a flag.seam too. However, we saw that we must be admin to access it. &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://52.198.197.227:8080/angryseam/css.seam?location&lt;span class="o"&gt;=&lt;/span&gt;../../../WEB-INF/pages.xml
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/pagesxml.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://fourchette-bombe.github.io/images/hitcon_angry_eam/pagesxml.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The first thing I tried, with little hope, was to play with the session. &lt;strong&gt;Logged in as lambda user&lt;/strong&gt;, I tried to go on register.seam and register with "admin" username.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/registerAdmin.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://fourchette-bombe.github.io/images/hitcon_angry_eam/registerAdmin.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Error message, the user is existing. But... it changed my session, and I'm logged in as admin now! I can browse the flag.seam as admin, and tada!, the flag.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="N|Solid" src="http://blog.fourchette-bombe.com/images/hitcon_angry_eam/flag.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="N|Solid" src="http://fourchette-bombe.github.io/images/hitcon_angry_eam/flag.png" /&gt;&lt;/p&gt;
 &lt;p&gt;I'm pretty sure this wasn't the intended way to solve this. But... I think it was the easiest way to do it! :)&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Blaklis from Fourchette-Bombe&lt;/em&gt;&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Handmade encryption standard</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-handmade-encryption-standard.html" rel="alternate"></link><published>2016-10-04T10:20:00+02:00</published><updated>2016-10-04T10:20:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-handmade-encryption-standard.html</id><summary type="html">&lt;h3&gt;Crypto - 250 pts&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Blaklis from Fourchette-Bombe&lt;/em&gt;&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Handmade encryption standard</title><link href="http://fourchette-bombe.github.io/2016/04/hackit-2016-quals-handmade-encryption-standard.html" rel="alternate"></link><published>2016-10-04T10:20:00+02:00</published><updated>2016-10-04T10:20:00+02:00</updated><author><name>Pod</name></author><id>tag:fourchette-bombe.github.io,2016-10-04:2016/04/hackit-2016-quals-handmade-encryption-standard.html</id><summary type="html">&lt;h3&gt;Crypto - 250 pts&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Times are getting harder and harder for Gen.Tompson.
 I`m soldier Alderson and some time ago we got this Rijndael cipher:
 \xa2\xc5\xe7\xcc\xe4\xa9\xb6\x41\x0b\x77\x92\x54\x78\xdb\xed\xab\xe0\x1d\xac\x83\x2e\xe2\x6b\x43\x07\x1a\x61\xf2\x81\x0f\xfe\xc6\x6e\x36\xc5\x7b\xd6\x9c\xca\x05\x93\x76\x43\xa9\x08\x45\xa4\x8f\x88\xb9\x31\x7e\x22\x7f\x00\x00\x48\xb7\x31\x7e\x22\x7f\x00\x00
@@ -41,7 +41,7 @@ P.S General Tompson can`t talk right now.
 Once we've got a group like this one : &lt;code&gt;(a,b,c)&lt;/code&gt; we got only 2 permutations which changes all three elements :
 - &lt;code&gt;(b,c,a)&lt;/code&gt;
 - &lt;code&gt;(c,a,b)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : &lt;img alt="2*((256)!/((256-3)!*3!))" src="http://blog.fourchette-bombe.com/images/hackit_handmade_encryption_standard/equation.gif" /&gt;&lt;code&gt;= 5 527 040&lt;/code&gt; possibilities which is by far vulnerable to bruteforcing.&lt;/p&gt;
+&lt;p&gt;Once we've listed this, the total of permutations equals 2 times the number of combinations of 3 among 256. Which mathematically is : &lt;img alt="2*((256)!/((256-3)!*3!))" src="http://fourchette-bombe.github.io/images/hackit_handmade_encryption_standard/equation.gif" /&gt;&lt;code&gt;= 5 527 040&lt;/code&gt; possibilities which is by far vulnerable to bruteforcing.&lt;/p&gt;
 &lt;p&gt;So in our code, we first need to generate all permutations with this :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -321,15 +321,15 @@ We need to remove the const before the declaration of SBox and SBoxInv and then 
 &lt;p&gt;Running this programm is very quick compared to python code. It does about 20 000 permutations per second, we get the result in less than 5 minutes showing us the flag : &lt;code&gt;h4ck1t{50M30N3_KN0VV5_cRyPto_N0T_34D}&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;This program could still be improved for sure, because there's some repeating code in here :)&lt;/p&gt;
 &lt;p&gt;Scripts:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_handmade_encryption_standard/demo.cpp"&gt;demo.cpp&lt;/a&gt;
-&lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_handmade_encryption_standard/aes256.h"&gt;aes256.h&lt;/a&gt;
-&lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_handmade_encryption_standard/aes256.cpp"&gt;aes256.cpp&lt;/a&gt;&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="stegano"></category></entry><entry><title>Hackit 2016 Quals - Electronicon</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-electronicon.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-electronicon.html</id><summary type="html">&lt;h4&gt;PPC - 250 pts&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://fourchette-bombe.github.io/downloads/hackit_handmade_encryption_standard/demo.cpp"&gt;demo.cpp&lt;/a&gt;
+&lt;a href="http://fourchette-bombe.github.io/downloads/hackit_handmade_encryption_standard/aes256.h"&gt;aes256.h&lt;/a&gt;
+&lt;a href="http://fourchette-bombe.github.io/downloads/hackit_handmade_encryption_standard/aes256.cpp"&gt;aes256.cpp&lt;/a&gt;&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="stegano"></category></entry><entry><title>Hackit 2016 Quals - Electronicon</title><link href="http://fourchette-bombe.github.io/2016/04/hackit-2016-quals-electronicon.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:fourchette-bombe.github.io,2016-10-04:2016/04/hackit-2016-quals-electronicon.html</id><summary type="html">&lt;h4&gt;PPC - 250 pts&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;This task is one of the methods for the psychological attacks. It is intended for people who don't have heart diseases and reached 18 years ;)
  h4ck1t{flag.upper()}&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_electronicon/pain.txt"&gt;Here&lt;/a&gt; is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :&lt;/p&gt;
-&lt;p&gt;&lt;img alt="firstSight" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/firstSight.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fourchette-bombe.github.io/downloads/hackit_electronicon/pain.txt"&gt;Here&lt;/a&gt; is the text file given with the challenge. We open this file with SublimeText for example, deactivate Word Wrap and we see something like this :&lt;/p&gt;
+&lt;p&gt;&lt;img alt="firstSight" src="http://fourchette-bombe.github.io/images/hackit_electronicon/firstSight.png" /&gt;&lt;/p&gt;
 &lt;p&gt;At this state, we already know what we need to do : Read this text file and write the hexadecimal content to a new file. Then we'll see what we can do with this builded file.&lt;/p&gt;
 &lt;p&gt;So to make the recognition, we first need patterns of different hexadecimal characters. To do this, I created a little python code which takes an multiplier as input that we can change by hand to describe which letter we are cutting out.&lt;/p&gt;
 &lt;p&gt;We must here pay attention to use codecs and utf-8 encoding to avoid problems or unwanted errors.&lt;/p&gt;
@@ -391,21 +391,21 @@ We need to remove the const before the declaration of SBox and SBoxInv and then 
 
 
 &lt;p&gt;We run the python script (about 50 seconds runtime here) and then we got a new file created. A simple &lt;code&gt;file solve&lt;/code&gt; in the terminal prompt will help us to know what to do next.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="file solve" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/file_result.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="file solve" src="http://fourchette-bombe.github.io/images/hackit_electronicon/file_result.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Luckily, the file is a jpg file. We add the extension and open it. Here we go, flag is showing !&lt;/p&gt;
-&lt;p&gt;&lt;img alt="flag" src="http://blog.fourchette-bombe.com/images/hackit_electronicon/solve.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_electronicon/createPatterns.py"&gt;createPatterns.py&lt;/a&gt;
-&lt;a href="http://blog.fourchette-bombe.com/downloads/hackit_electronicon/ppc.py"&gt;ppc.py&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Flag&lt;/strong&gt; : h4ck1t{1_LOV3_3P1C_F0NT$}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Writeup 1magePr1son</title><link href="http://blog.fourchette-bombe.com/2016/04/hackit-2016-quals-writeup-1magepr1son.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:blog.fourchette-bombe.com,2016-10-04:2016/04/hackit-2016-quals-writeup-1magepr1son.html</id><summary type="html">&lt;h4&gt;Stegano - 150 pts&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="flag" src="http://fourchette-bombe.github.io/images/hackit_electronicon/solve.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fourchette-bombe.github.io/downloads/hackit_electronicon/createPatterns.py"&gt;createPatterns.py&lt;/a&gt;
+&lt;a href="http://fourchette-bombe.github.io/downloads/hackit_electronicon/ppc.py"&gt;ppc.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Flag&lt;/strong&gt; : h4ck1t{1_LOV3_3P1C_F0NT$}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="PPC"></category></entry><entry><title>Hackit 2016 Quals - Writeup 1magePr1son</title><link href="http://fourchette-bombe.github.io/2016/04/hackit-2016-quals-writeup-1magepr1son.html" rel="alternate"></link><published>2016-10-04T10:00:00+02:00</published><updated>2016-10-04T10:00:00+02:00</updated><author><name>Pod</name></author><id>tag:fourchette-bombe.github.io,2016-10-04:2016/04/hackit-2016-quals-writeup-1magepr1son.html</id><summary type="html">&lt;h4&gt;Stegano - 150 pts&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Implementing of the latest encryption system as always brought a set of problems for one of the known FSI services: they have lost the module which is responsible for decoding information.
  And some information has https://ctf.com.ua/data/attachments/planet_982680d78ab9718f5a335ec05ebc4ea2.png.zipeen already ciphered! Your task for today: to define a cryptoalgorithm and decode the message.
  h4ck1t{str(flag).upper()}&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In this challenge, we're given a picture which is a beautiful wallpaper&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Space Wallpaper" src="http://blog.fourchette-bombe.com/images/1magePr1son/planet.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Space Wallpaper" src="http://fourchette-bombe.github.io/images/1magePr1son/planet.png" /&gt;&lt;/p&gt;
 &lt;p&gt;If we look carefully at this picture, and we zoom a bit, we can see little pixels that are differents&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Zoom on the wallpaper" src="http://blog.fourchette-bombe.com/images/1magePr1son/planet_zoom.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Zoom on the wallpaper" src="http://fourchette-bombe.github.io/images/1magePr1son/planet_zoom.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Theses pixels are placed every 25 pixels (24 "normal" pixels between each "abnormal" pixel)&lt;/p&gt;
 &lt;p&gt;So we try to create an image with only theses pixels. We got this tiny python code :&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
@@ -429,5 +429,5 @@ We need to remove the const before the declaration of SBox and SBoxInv and then 
 
 
 &lt;p&gt;And the image we receive gives us the flag :&lt;/p&gt;
-&lt;p&gt;&lt;img alt="recovered image" src="http://blog.fourchette-bombe.com/images/1magePr1son/final.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="recovered image" src="http://fourchette-bombe.github.io/images/1magePr1son/final.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Flag : h4ck1t{SPACE_IS_THE_KEY}&lt;/p&gt;</summary><category term="ctf"></category><category term="writeup"></category><category term="stegano"></category></entry></feed>
